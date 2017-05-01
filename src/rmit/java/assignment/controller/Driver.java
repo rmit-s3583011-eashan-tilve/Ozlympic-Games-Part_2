@@ -31,7 +31,6 @@ public class Driver {
 	private static final int OPTION_3 = 3;
 	private static final int OPTION_4 = 4;
 	private static final int OPTION_5 = 5;
-	private static final int OPTION_6 = 6;
 
 	public static final int SWIMMING = 1;
 	public static final int CYCLING = 2;
@@ -55,11 +54,10 @@ public class Driver {
 		System.out.println("Ozlympic Game");
 		System.out.println("==========================================");
 		System.out.println("1. Select a	game to	run");
-		System.out.println("2. Predict the winner of the game");
-		System.out.println("3. Start the game");
-		System.out.println("4. Display the final results of all games");
-		System.out.println("5. Display the points of all athletes");
-		System.out.println("6. Exit");
+		System.out.println("2. Start the game");
+		System.out.println("3. Display the final results of all games");
+		System.out.println("4. Display the points of all athletes");
+		System.out.println("5. Exit");
 
 	}
 
@@ -78,8 +76,8 @@ public class Driver {
 
 	/**
 	 * This method is used to start the Ozlympics and gives six options to the
-	 * user. 1) Select Game 2) Predict Winner 3) Start Game 4) Display Results
-	 * 5) Display Points 6) Exit
+	 * user. 1) Select Game 2) Start Game 3) Display Results
+	 * 4) Display Points  5) Exit
 	 *
 	 * If the user enters any other input an Invalid Choice is displayed.
 	 */
@@ -100,18 +98,15 @@ public class Driver {
 				selectGame();
 				break;
 			case OPTION_2:
-				predictWinner();
-				break;
-			case OPTION_3:
 				startGame();
 				break;
-			case OPTION_4:
+			case OPTION_3:
 				displayResults();
 				break;
-			case OPTION_5:
+			case OPTION_4:
 				displayPoints();
 				break;
-			case OPTION_6:
+			case OPTION_5:
 				System.exit(0);
 				break;
 			default: {
@@ -235,86 +230,6 @@ public class Driver {
 
 	}
 
-	/**
-	 * This method displays the Athlete information to the user and asks him to
-	 * predict the winner
-	 **/
-	private void predictWinner() {
-
-		int userChoice = 0;
-		int numberOfParticipants = 0;
-		ArrayList<Athlete> athletes = null;
-
-		switch (game.getCurrentGame()) {
-		case SWIMMING:
-			Swimming swimming = getLastSwimmingGame();
-			athletes = swimming.getContestants();
-			numberOfParticipants = swimming.showParticipants(athletes);
-
-			while (true) {
-				System.out.println("Who do you feel will win? ");
-				while (!scanInput.hasNextInt()) {
-					scanInput.next();
-				}
-				userChoice = scanInput.nextInt();
-				if (userChoice > numberOfParticipants || userChoice < 0) {
-					System.out.println("Invalid Input!");
-					continue;
-				} else {
-					swimming.setUserPredictedWinner(athletes.get(userChoice - 1));
-					System.out.println("You have chosen : " + swimming.getUserPredictedWinner());
-					break;
-				}
-			}
-
-			break;
-		case CYCLING:
-			Cycling cycling = getLastCyclingGame();
-			athletes = cycling.getContestants();
-			numberOfParticipants = cycling.showParticipants(athletes);
-			while (true) {
-				System.out.println("Who do you feel will win? ");
-				while (!scanInput.hasNextInt()) {
-					scanInput.next();
-				}
-				userChoice = scanInput.nextInt();
-				if (userChoice > numberOfParticipants || userChoice < 0) {
-					System.out.println("Invalid Input!");
-					continue;
-				} else {
-					cycling.setUserPredictedWinner(athletes.get(userChoice - 1));
-					System.out.println("You have chosen : " + cycling.getUserPredictedWinner());
-					break;
-				}
-			}
-
-			break;
-		case RUNNING:
-			Running running = getLastRunningGame();
-			athletes = running.getContestants();
-			numberOfParticipants = running.showParticipants(athletes);
-			while (true) {
-				System.out.println("Who do you feel will win? ");
-				while (!scanInput.hasNextInt()) {
-					scanInput.next();
-				}
-				userChoice = scanInput.nextInt();
-				if (userChoice > numberOfParticipants || userChoice < 0) {
-					System.out.println("Invalid Input!");
-					continue;
-				} else {
-					running.setUserPredictedWinner(athletes.get(userChoice - 1));
-					System.out.println("You have chosen : " + running.getUserPredictedWinner());
-					break;
-				}
-			}
-			break;
-		default:
-			System.out.println("Please, select a game first.");
-
-		}
-
-	}
 
 	/**
 	 * This method returns the last running game selected
