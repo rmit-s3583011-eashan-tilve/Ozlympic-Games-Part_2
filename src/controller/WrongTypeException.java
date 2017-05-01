@@ -1,4 +1,4 @@
-package rmit.java.assignment.controller;
+package controller;
 
 public class WrongTypeException extends Exception {
 

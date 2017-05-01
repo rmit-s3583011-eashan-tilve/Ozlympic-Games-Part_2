@@ -1,4 +1,4 @@
-package rmit.java.assignment.model;
+package model;
 
 /**
  *

@@ -1,8 +1,8 @@
-package rmit.java.assignment.model;
+package model;
 
 import java.util.Random;
 
-import rmit.java.assignment.controller.Driver;
+import controller.Driver;
 
 /**
  *

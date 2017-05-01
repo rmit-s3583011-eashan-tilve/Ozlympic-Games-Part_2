@@ -1,10 +1,10 @@
-package rmit.java.assignment.model;
+package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-import rmit.java.assignment.database.ParticipantList;
+import database.ParticipantList;
 
 /**
  *

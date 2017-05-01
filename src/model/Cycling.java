@@ -1,25 +1,26 @@
-package rmit.java.assignment.model;
+package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import rmit.java.assignment.controller.Driver;
-import rmit.java.assignment.database.ParticipantList;
+import controller.Driver;
+import database.ParticipantList;
 
 /**
  *
- * Class Description: Class that represents Running games. Superclass: Game
+ * Class Description: Class that represents Cycling games. Superclass: Game
  * 
  * @author: Eashan Tilve
  */
-public class Running extends Game {
-	private static final int MINIMUM_PARTICIPANT_COUNT = 5;
-	private static final int MAXIMUM_PARTICIPANT_COUNT = 8;
-	private Athlete userPredictedWinner;
-	private ArrayList<Athlete> contestants = new ArrayList<Athlete>();
-	private HashMap<Athlete, Float> timings = new HashMap<Athlete, Float>();
+public class Cycling extends Game {
+
 	private String gameID;
 	private Official official;
+	private static final int MINIMUM_PARTICIPANT_COUNT = 5;
+	private static final int MAXIMUM_PARTICIPANT_COUNT = 8;
+	private HashMap<Athlete, Float> timings = new HashMap<Athlete, Float>();
+	private ArrayList<Athlete> contestants = new ArrayList<Athlete>();
+	private Athlete userPredictedWinner;
 
 	/**
 	 * This method is used to get the user predicted winner for this game
@@ -43,18 +44,18 @@ public class Running extends Game {
 	 * CONSTRUCTOR
 	 * 
 	 * @param String
-	 *            gameID: used to set running unique ID
+	 *            gameID: used to set cycling unique ID
 	 * @param Official
-	 *            official: used to assign an official to the running game
+	 *            official: used to assign an official to the cycling game
 	 */
-	public Running(String gameID, Official official) {
+	public Cycling(String gameID, Official official) {
 		this.gameID = gameID;
 		this.official = official;
 	}
 
 	/**
 	 * This method is used to assign the athletes and the official to the
-	 * running game.
+	 * cycling game.
 	 * 
 	 * @param ParticipantList
 	 *            participantList This parameter contains the list of all the
@@ -64,39 +65,30 @@ public class Running extends Game {
 		int random = (int) (MAXIMUM_PARTICIPANT_COUNT
 				+ Math.random() * (MAXIMUM_PARTICIPANT_COUNT - MINIMUM_PARTICIPANT_COUNT + 1));
 
-		ArrayList<Athlete> chosenSprinters = new ArrayList<Athlete>();
+		ArrayList<Athlete> chosenCyclists = new ArrayList<Athlete>();
 
-		for (Athlete athlete : participationList.getSprinters()) {
-			chosenSprinters.add(athlete);
+		for (Athlete athlete : participationList.getCyclists()) {
+			chosenCyclists.add(athlete);
 		}
 		for (Athlete athlete : participationList.getSuperAthletes()) {
-			chosenSprinters.add(athlete);
+			chosenCyclists.add(athlete);
 		}
 
 		for (int participantCount = 1; participantCount <= random; participantCount++) {
-			int removeID = (int) (Math.random() * chosenSprinters.size());
-			chosenSprinters.remove(removeID);
+			int removeID = (int) (Math.random() * chosenCyclists.size());
+			chosenCyclists.remove(removeID);
 		}
-		this.contestants = chosenSprinters;
+		this.contestants = chosenCyclists;
 
-		for (Athlete athlete : chosenSprinters) {
+		for (Athlete athlete : chosenCyclists) {
 			if (athlete instanceof SuperAthlete) {
-				((SuperAthlete) athlete).setCurrentGame(Driver.RUNNING);
+				((SuperAthlete) athlete).setCurrentGame(Driver.CYCLING);
 			}
 		}
 	}
 
 	/**
-	 * This method is used to get the contestants of the running game
-	 * 
-	 * @return ArrayList<Athlete> contestants
-	 */
-	public ArrayList<Athlete> getContestants() {
-		return contestants;
-	}
-
-	/**
-	 * This method is used to get the running Games unique ID
+	 * This method is used to get the Cycling Games unique ID
 	 * 
 	 * @return String returns gameID
 	 */
@@ -105,12 +97,21 @@ public class Running extends Game {
 	}
 
 	/**
-	 * This method is used to get the running Games official
+	 * This method is used to get the Cycling Games official
 	 * 
 	 * @return Official official
 	 */
 	public Official getOfficial() {
 		return official;
+	}
+
+	/**
+	 * This method is used to get the contestants of the cycling game
+	 * 
+	 * @return ArrayList<Athlete> contestants
+	 */
+	public ArrayList<Athlete> getContestants() {
+		return contestants;
 	}
 
 	/**
@@ -135,7 +136,7 @@ public class Running extends Game {
 	}
 
 	/**
-	 * This method is used to set the contestants in the running game
+	 * This method is used to set the contestants in the cycling game
 	 * 
 	 * @param ArrayList<Athlete>
 	 *            contestants

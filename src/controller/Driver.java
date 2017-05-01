@@ -1,16 +1,16 @@
-package rmit.java.assignment.controller;
+package controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import rmit.java.assignment.database.ParticipantList;
-import rmit.java.assignment.model.Athlete;
-import rmit.java.assignment.model.Cycling;
-import rmit.java.assignment.model.Game;
-import rmit.java.assignment.model.Official;
-import rmit.java.assignment.model.Running;
-import rmit.java.assignment.model.Swimming;
+import database.ParticipantList;
+import model.Athlete;
+import model.Cycling;
+import model.Game;
+import model.Official;
+import model.Running;
+import model.Swimming;
 
 /**
  *

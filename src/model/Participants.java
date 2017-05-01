@@ -1,4 +1,4 @@
-package rmit.java.assignment.model;
+package model;
 /**
 *
 * Class Description: Abstract Class that represents all participants in ozlympics.

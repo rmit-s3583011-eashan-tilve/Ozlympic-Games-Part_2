@@ -1,14 +1,14 @@
-package rmit.java.assignment.database;
+package database;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import rmit.java.assignment.model.Athlete;
-import rmit.java.assignment.model.Cyclist;
-import rmit.java.assignment.model.Official;
-import rmit.java.assignment.model.Sprinter;
-import rmit.java.assignment.model.SuperAthlete;
-import rmit.java.assignment.model.Swimmer;
+import model.Athlete;
+import model.Cyclist;
+import model.Official;
+import model.Sprinter;
+import model.SuperAthlete;
+import model.Swimmer;
 
 /**
  *
