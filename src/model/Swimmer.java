@@ -15,9 +15,9 @@ public class Swimmer extends Athlete {
 	public static final int MAXIMUM_SWIM_TIME = 200;
 
 	private String name;
-	private int age;
+	private String age;
 	private String state;
-	private int uniqueID;
+	private String uniqueID;
 	private int points;
 
 	/**
@@ -33,7 +33,7 @@ public class Swimmer extends Athlete {
 	 *            uniquID: id of the swimmer
 	 * 
 	 */
-	public Swimmer(String name, int age, String state, int uniqueID) {
+	public Swimmer(String name, String age, String state, String uniqueID) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -47,7 +47,7 @@ public class Swimmer extends Athlete {
 	 * @return int will return the swimmer's unique ID.
 	 */
 	@Override
-	public int getUniqueID() {
+	public String getUniqueID() {
 		return uniqueID;
 	}
 
@@ -92,7 +92,7 @@ public class Swimmer extends Athlete {
 	 */
 	@Override
 	public String toString() {
-		return "name=" + name + ", age=" + age + ", state=" + state + ", ID=" + uniqueID;
+		return  "ID: " + uniqueID + ", NAME: " + name + ", AGE: " + age + ", STATE: " + state;
 	}
 
 }

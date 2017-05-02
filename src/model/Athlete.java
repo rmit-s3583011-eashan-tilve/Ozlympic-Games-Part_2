@@ -37,5 +37,5 @@ public abstract class Athlete extends Participants {
 	 * 
 	 * @return int will return the athletes unique ID.
 	 */
-	public abstract int getUniqueID();
+	public abstract String getUniqueID();
 }

@@ -44,47 +44,9 @@ public class Swimming extends Game {
 	 * 
 	 * @param String
 	 *            gameID: used to set swimming unique ID
-	 * @param Official
-	 *            official: used to assign an official to the swimming game
 	 */
-	public Swimming(String gameID, Official official) {
+	public Swimming(String gameID) {
 		this.gameID = gameID;
-		this.official = official;
-	}
-
-	/**
-	 * This method is used to assign the athletes and the official to the
-	 * swimming game.
-	 * 
-	 * @param ParticipantList
-	 *            participantList This parameter contains the list of all the
-	 *            participants
-	 */
-	public void assignContestants(ParticipantList participationList) {
-		int random = (int) (MAXIMUM_PARTICIPANT_COUNT
-				+ Math.random() * (MAXIMUM_PARTICIPANT_COUNT - MINIMUM_PARTICIPANT_COUNT + 1));
-
-		ArrayList<Athlete> chosenSwimmers = new ArrayList<Athlete>();
-
-		for (Athlete athlete : participationList.getSwimmers()) {
-			chosenSwimmers.add(athlete);
-		}
-		for (Athlete athlete : participationList.getSuperAthletes()) {
-			chosenSwimmers.add(athlete);
-		}
-
-		for (int participantCount = 1; participantCount <= random; participantCount++) {
-			int removeID = (int) (Math.random() * chosenSwimmers.size());
-
-			chosenSwimmers.remove(removeID);
-		}
-		this.contestants = chosenSwimmers;
-
-		for (Athlete athlete : chosenSwimmers) {
-			if (athlete instanceof SuperAthlete) {
-				((SuperAthlete) athlete).setCurrentGame(Driver.SWIMMING);
-			}
-		}
 	}
 
 	/**
@@ -134,6 +96,10 @@ public class Swimming extends Game {
 	 */
 	public HashMap<Athlete, Float> getTimings() {
 		return timings;
+	}
+
+	public void setOfficial(Official official) {
+		this.official = official;
 	}
 
 	/**

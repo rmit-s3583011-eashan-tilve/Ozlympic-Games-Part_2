@@ -45,46 +45,9 @@ public class Cycling extends Game {
 	 * 
 	 * @param String
 	 *            gameID: used to set cycling unique ID
-	 * @param Official
-	 *            official: used to assign an official to the cycling game
 	 */
-	public Cycling(String gameID, Official official) {
+	public Cycling(String gameID) {
 		this.gameID = gameID;
-		this.official = official;
-	}
-
-	/**
-	 * This method is used to assign the athletes and the official to the
-	 * cycling game.
-	 * 
-	 * @param ParticipantList
-	 *            participantList This parameter contains the list of all the
-	 *            participants
-	 */
-	public void assignContestants(ParticipantList participationList) {
-		int random = (int) (MAXIMUM_PARTICIPANT_COUNT
-				+ Math.random() * (MAXIMUM_PARTICIPANT_COUNT - MINIMUM_PARTICIPANT_COUNT + 1));
-
-		ArrayList<Athlete> chosenCyclists = new ArrayList<Athlete>();
-
-		for (Athlete athlete : participationList.getCyclists()) {
-			chosenCyclists.add(athlete);
-		}
-		for (Athlete athlete : participationList.getSuperAthletes()) {
-			chosenCyclists.add(athlete);
-		}
-
-		for (int participantCount = 1; participantCount <= random; participantCount++) {
-			int removeID = (int) (Math.random() * chosenCyclists.size());
-			chosenCyclists.remove(removeID);
-		}
-		this.contestants = chosenCyclists;
-
-		for (Athlete athlete : chosenCyclists) {
-			if (athlete instanceof SuperAthlete) {
-				((SuperAthlete) athlete).setCurrentGame(Driver.CYCLING);
-			}
-		}
 	}
 
 	/**
@@ -145,4 +108,7 @@ public class Cycling extends Game {
 		this.contestants = contestants;
 	}
 
+	public void setOfficial(Official official) {
+		this.official = official;
+	}
 }

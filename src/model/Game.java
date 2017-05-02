@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+import controller.Driver;
 import database.ParticipantList;
 
 /**
@@ -15,17 +16,14 @@ import database.ParticipantList;
 
 public class Game {
 
-	private ArrayList<Integer> uniqueCyclingID = new ArrayList<Integer>();
-	private ArrayList<Integer> uniqueRunningID = new ArrayList<Integer>();
-	private ArrayList<Integer> uniqueSwimmingID = new ArrayList<Integer>();
-	private ArrayList<Swimming> swimmingGames = new ArrayList<Swimming>();
-	private ArrayList<Cycling> cyclingGames = new ArrayList<Cycling>();
-	private ArrayList<Running> runningGames = new ArrayList<Running>();
+	private ArrayList<Game> games = new ArrayList<Game>();
 	private int currentGame;
 	private static final char CYCLING_ID = 'C';
 	private static final char RUNNING_ID = 'R';
 	private static final char SWIMMING_ID = 'S';
 	private static final int OFFICIALS_COUNT = 8;
+	private static final int ARRAY_OFFSET = 2;
+	private static int gameCount = 1;
 
 	/**
 	 * CONSTRUCTOR
@@ -35,9 +33,7 @@ public class Game {
 	 */
 	public Game() {
 		super();
-		uniqueCyclingID.add(0);
-		uniqueRunningID.add(0);
-		uniqueSwimmingID.add(0);
+
 	}
 
 	/**
@@ -62,66 +58,12 @@ public class Game {
 	}
 
 	/**
-	 * This method is used to get an array list of all swimming games selected
+	 * This method is used to get an array list of all games
 	 * 
-	 * @return ArrayList<Swimming> swimmingGames
+	 * @return ArrayList<Game> games
 	 */
-	public ArrayList<Swimming> getSwimmingGames() {
-		return swimmingGames;
-	}
-
-	/**
-	 * This method is used to get an array list of all cycling games selected
-	 * 
-	 * @return ArrayList<Cycling> cyclingGames
-	 */
-	public ArrayList<Cycling> getCyclingGames() {
-		return cyclingGames;
-	}
-
-	/**
-	 * This method is used to get an array list of all running games selected
-	 * 
-	 * @return ArrayList<Running> runningGames
-	 */
-	public ArrayList<Running> getRunningGames() {
-		return runningGames;
-	}
-
-	/**
-	 * This method is used to generate a unique ID for a new cycling game
-	 * 
-	 * @return String unique ID for a new cycling game
-	 */
-	private String generateUniqueCyclingID() {
-		int maxUniqueID = Collections.max(uniqueCyclingID) + 1;
-		uniqueCyclingID.add(maxUniqueID);
-		return CYCLING_ID + Integer.toString(maxUniqueID);
-
-	}
-
-	/**
-	 * This method is used to generate a unique ID for a new running game
-	 * 
-	 * @return String unique ID for a new running game
-	 */
-	private String generateUniqueRunningID() {
-		int maxUniqueID = Collections.max(uniqueRunningID) + 1;
-		uniqueRunningID.add(maxUniqueID);
-		return RUNNING_ID + Integer.toString(maxUniqueID);
-
-	}
-
-	/**
-	 * This method is used to generate a unique ID for a new swimming game
-	 * 
-	 * @return String unique ID for a new swimming game
-	 */
-	private String generateUniqueSwimmingID() {
-		int maxUniqueID = Collections.max(uniqueSwimmingID) + 1;
-		uniqueSwimmingID.add(maxUniqueID);
-		return SWIMMING_ID + Integer.toString(maxUniqueID);
-
+	public ArrayList<Game> getGames() {
+		return games;
 	}
 
 	/**
@@ -129,9 +71,9 @@ public class Game {
 	 * 
 	 * @return Swimming new swimming game object
 	 */
-	public Swimming CreateNewSwimmingGame(ParticipantList participantList) {
-		Swimming swimming = new Swimming(this.generateUniqueSwimmingID(), this.assignOfficial(participantList));
-		return swimming;
+	public void CreateNewSwimmingGame() {
+		games.add(new Swimming(SWIMMING_ID + Integer.toString(gameCount++)));
+
 	}
 
 	/**
@@ -139,9 +81,9 @@ public class Game {
 	 * 
 	 * @return Cycling new cycling game object
 	 */
-	public Cycling CreateNewCyclingGame(ParticipantList participantList) {
-		Cycling cycling = new Cycling(this.generateUniqueCyclingID(), this.assignOfficial(participantList));
-		return cycling;
+	public void CreateNewCyclingGame() {
+		games.add(new Cycling(CYCLING_ID + Integer.toString(gameCount++)));
+
 	}
 
 	/**
@@ -149,9 +91,8 @@ public class Game {
 	 * 
 	 * @return Running new running game object
 	 */
-	public Running CreateNewRunningGame(ParticipantList participantList) {
-		Running running = new Running(this.generateUniqueRunningID(), this.assignOfficial(participantList));
-		return running;
+	public void CreateNewRunningGame() {
+		games.add(new Running(RUNNING_ID + Integer.toString(gameCount++)));
 	}
 
 	/**
@@ -168,75 +109,6 @@ public class Game {
 		return athleteCount;
 	}
 
-
-	/**
-	 * This method is used to print the reults of swimming games
-	 * 
-	 */
-	public void displaySwimmingResults() {
-		ArrayList<Athlete> swimmers = null;
-		HashMap<Athlete, Float> timings = null;
-		int athleteCount = 0;
-		System.out.println("SWIMMING GAMES:");
-		for (Swimming swimming : swimmingGames) {
-			swimmers = swimming.getContestants();
-			timings = swimming.getTimings();
-			athleteCount = 0;
-			System.out.println("SWIMMING GAME " + swimming.getGameID());
-			for (Athlete swimmer : swimmers) {
-				System.out.println(++athleteCount + ". " + swimmer + " Time: " + timings.get(swimmer));
-			}
-			System.out.println("REFREE: " + swimming.getOfficial());
-			System.out.println();
-
-		}
-	}
-
-	/**
-	 * This method is used to print the reults of running games
-	 * 
-	 */
-	public void displayRunningResults() {
-		ArrayList<Athlete> sprinters = null;
-		HashMap<Athlete, Float> timings = null;
-		int athleteCount = 0;
-		System.out.println("RUNNING GAMES:");
-		for (Running running : runningGames) {
-			sprinters = running.getContestants();
-			timings = running.getTimings();
-			athleteCount = 0;
-			System.out.println("RUNNING GAME " + running.getGameID());
-			for (Athlete sprinter : sprinters) {
-				System.out.println(++athleteCount + ". " + sprinter + " Time: " + timings.get(sprinter));
-			}
-			System.out.println("REFREE: " + running.getOfficial());
-			System.out.println();
-
-		}
-	}
-
-	/**
-	 * This method is used to print the reults of cycling games
-	 * 
-	 */
-	public void displayCyclingResults() {
-		ArrayList<Athlete> cyclists = null;
-		HashMap<Athlete, Float> timings = null;
-		int athleteCount = 0;
-		System.out.println("CYCLING GAMES:");
-		for (Cycling cycling : cyclingGames) {
-			cyclists = cycling.getContestants();
-			timings = cycling.getTimings();
-			athleteCount = 0;
-			System.out.println("CYCLING GAME " + cycling.getGameID());
-			for (Athlete cyclist : cyclists) {
-				System.out.println(++athleteCount + ". " + cyclist + " Time: " + timings.get(cyclist));
-			}
-			System.out.println("REFREE: " + cycling.getOfficial());
-			System.out.println();
-		}
-	}
-	
 	/**
 	 * This method is used to get an official randomly from the participant
 	 * list.
@@ -245,10 +117,40 @@ public class Game {
 	 *            participantList
 	 * @return Official official
 	 */
-	public Official assignOfficial(ParticipantList participantList) {
-		int random = (int) (Math.random() * OFFICIALS_COUNT);
+	public void assignOfficial(Official official) {
+		Game game = this.games.get(gameCount - ARRAY_OFFSET);
+		if (game instanceof Swimming) {
+			((Swimming) game).setOfficial(official);
+		} else if (game instanceof Running) {
+			((Running) game).setOfficial(official);
 
-		return participantList.getOfficials().get(random);
+		} else if (game instanceof Cycling) {
+			((Cycling) game).setOfficial(official);
+
+		}
+	}
+
+	/**
+	 * This method is used to assign the athletes and the official to the
+	 * cycling game.
+	 * 
+	 * @param ParticipantList
+	 *            participantList This parameter contains the list of all the
+	 *            participants
+	 */
+	public void assignContestants(ArrayList<Athlete> athletes) {
+
+		Game game = this.games.get(gameCount - ARRAY_OFFSET);
+		if (game instanceof Swimming) {
+			((Swimming) game).setContestants(athletes);
+		} else if (game instanceof Running) {
+			((Running) game).setContestants(athletes);
+
+		} else if (game instanceof Cycling) {
+			((Cycling) game).setContestants(athletes);
+
+		}
+
 	}
 
 }

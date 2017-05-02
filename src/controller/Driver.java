@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import database.ParticipantList;
+import javafx.scene.control.ListView;
 import model.Athlete;
 import model.Cycling;
 import model.Game;
@@ -32,6 +33,14 @@ public class Driver {
 	private static final int OPTION_4 = 4;
 	private static final int OPTION_5 = 5;
 
+	public Game getGame() {
+		return game;
+	}
+
+	public ParticipantList getParticipantList() {
+		return participantList;
+	}
+
 	public static final int SWIMMING = 1;
 	public static final int CYCLING = 2;
 	public static final int RUNNING = 3;
@@ -42,6 +51,7 @@ public class Driver {
 	 * intializes participantList, game
 	 */
 	public Driver() {
+		System.out.println("Initializing Driver..");
 		participantList = new ParticipantList();
 		game = new Game();
 	}
@@ -72,50 +82,6 @@ public class Driver {
 		System.out.println("3. Running");
 		System.out.println("Which game do you want to run?");
 
-	}
-
-	/**
-	 * This method is used to start the Ozlympics and gives six options to the
-	 * user. 1) Select Game 2) Start Game 3) Display Results
-	 * 4) Display Points  5) Exit
-	 *
-	 * If the user enters any other input an Invalid Choice is displayed.
-	 */
-	public void startOzlympics() {
-
-		int userInput;
-
-		while (true) {
-
-			showMenu();
-			while (!scanInput.hasNextInt()) {
-				scanInput.next();
-			}
-			userInput = scanInput.nextInt();
-
-			switch (userInput) {
-			case OPTION_1:
-				selectGame();
-				break;
-			case OPTION_2:
-				startGame();
-				break;
-			case OPTION_3:
-				displayResults();
-				break;
-			case OPTION_4:
-				displayPoints();
-				break;
-			case OPTION_5:
-				System.exit(0);
-				break;
-			default: {
-				System.out.println("Invalid Choice, Please Choose again.");
-				continue;
-			}
-
-			}
-		}
 	}
 
 	/**
@@ -162,163 +128,19 @@ public class Driver {
 	 * This method is used to display the results of all games in Ozlympics.
 	 */
 	private void displayResults() {
-		game.displaySwimmingResults();
-		System.out.println();
-		game.displayCyclingResults();
-		System.out.println();
-		game.displayRunningResults();
 
 	}
 
-	/**
-	 * This method is used to start the current game, record the time taken by
-	 * the Athletes and compare the results of the game with the user
-	 * prediction. The user Prediction is set to null after this method.
-	 */
-	private void startGame() {
-		ArrayList<Athlete> athletes = null;
-		Official official;
-		switch (game.getCurrentGame()) {
-		case SWIMMING:
-			Swimming swimming = getLastSwimmingGame();
-			athletes = swimming.getContestants();
-			for (Athlete athlete : athletes) {
-				swimming.recordAthleteTime(athlete.compete(), athlete);
-			}
-			official = swimming.getOfficial();
-			swimming.setContestants( official.computeWinners(swimming.getTimings()));
-			if (swimming.getUserPredictedWinner() != null) {
-				if (swimming.getUserPredictedWinner().getUniqueID() == swimming.getContestants().get(0).getUniqueID()) {
-					System.out.println("CONGRADULATIONS! YOUR PREDICTION WAS CORRECT!");
-				}
-			}
-			swimming.setUserPredictedWinner(null);
-			break;
-		case CYCLING:
-			Cycling cycling = getLastCyclingGame();
-			athletes = cycling.getContestants();
-			for (Athlete athlete : athletes) {
-				cycling.recordAthleteTime(athlete.compete(), athlete);
-			}
-			official = cycling.getOfficial();
-			cycling.setContestants(official.computeWinners(cycling.getTimings()));
-			if (cycling.getUserPredictedWinner() != null) {
-				if (cycling.getUserPredictedWinner().getUniqueID() == cycling.getContestants().get(0).getUniqueID()) {
-					System.out.println("CONGRADULATIONS! YOUR PREDICTION WAS CORRECT!");
-				}
-			}
-			cycling.setUserPredictedWinner(null);
-			break;
-		case RUNNING:
-			Running running = getLastRunningGame();
-			athletes = running.getContestants();
-			for (Athlete athlete : athletes) {
-				running.recordAthleteTime(athlete.compete(), athlete);
-			}
-			official = running.getOfficial();
-			running.setContestants(official.computeWinners(running.getTimings()));
-			if (running.getUserPredictedWinner() != null) {
-				if (running.getUserPredictedWinner().getUniqueID() == running.getContestants().get(0).getUniqueID()) {
-					System.out.println("CONGRADULATIONS! YOUR PREDICTION WAS CORRECT!");
-				}
-			}
-			running.setUserPredictedWinner(null);
-			break;
-		default: System.out.println("Please, select a game first.");
-			;
+	public ArrayList<Athlete> getSelectedAthletes(ListView<String> selectedAthletes) {
+		ArrayList<Athlete> athletes = new ArrayList<Athlete>();
+		for (String athlete : selectedAthletes.getItems()) {
+			athletes.add((Athlete)participantList.findParticipant(athlete));
 		}
-
+		return athletes;
 	}
 
-
-	/**
-	 * This method returns the last running game selected
-	 * 
-	 * @return Running
-	 */
-	private Running getLastRunningGame() {
-		try {
-			ArrayList<Running> runningGames = game.getRunningGames();
-			return runningGames.get(runningGames.size() - 1);
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-		return null;
-	}
-
-	/**
-	 * This method returns the last cycling game selected
-	 * 
-	 * @return Cycling
-	 */
-	private Cycling getLastCyclingGame() {
-		try {
-			ArrayList<Cycling> cyclingGames = game.getCyclingGames();
-			return cyclingGames.get(cyclingGames.size() - 1);
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-		return null;
-	}
-
-	/**
-	 * This method returns the last swimming game selected
-	 * 
-	 * @return Swimming
-	 */
-	private Swimming getLastSwimmingGame() {
-		try {
-			ArrayList<Swimming> swimmingGames = game.getSwimmingGames();
-			return swimmingGames.get(swimmingGames.size() - 1);
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-		return null;
-	}
-
-	/**
-	 * This method allows the user to select a game It creates a new game and
-	 * initializes the games parameters depending on the user input
-	 * 
-	 */
-	private void selectGame() {
-		int userChoice;
-
-		while (true) {
-			gameMenu();
-			while (!scanInput.hasNextInt()) {
-				scanInput.next();
-			}
-			userChoice = scanInput.nextInt();
-
-			switch (userChoice) {
-			case SWIMMING:
-				Swimming swimming = game.CreateNewSwimmingGame(participantList);
-				swimming.assignContestants(participantList);
-				game.getSwimmingGames().add(swimming);
-				game.setCurrentGame(SWIMMING);
-				break;
-			case CYCLING:
-				Cycling cycling = game.CreateNewCyclingGame(participantList);
-				cycling.assignContestants(participantList);
-				game.getCyclingGames().add(cycling);
-				game.setCurrentGame(CYCLING);
-				break;
-			case RUNNING:
-				Running running = game.CreateNewRunningGame(participantList);
-				running.assignContestants(participantList);
-				game.getRunningGames().add(running);
-				game.setCurrentGame(RUNNING);
-				break;
-			default: {
-				System.out.println("Invalid Choice, Please Choose again.");
-				continue;
-			}
-			}
-			break;
-
-		}
-
+	public Official getSelectedOfficial(String official) {
+		return (Official)participantList.findParticipant(official);
 	}
 
 }

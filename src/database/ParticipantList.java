@@ -6,6 +6,7 @@ import java.util.Collections;
 import model.Athlete;
 import model.Cyclist;
 import model.Official;
+import model.Participants;
 import model.Sprinter;
 import model.SuperAthlete;
 import model.Swimmer;
@@ -23,18 +24,6 @@ public class ParticipantList {
 	private ArrayList<Athlete> cyclists = new ArrayList<Athlete>();
 	private ArrayList<Athlete> superAthletes = new ArrayList<Athlete>();
 	private ArrayList<Official> officials = new ArrayList<Official>();
-	private ArrayList<Integer> uniqueIDList = new ArrayList<Integer>();
-
-	/**
-	 * This method is used to generates unique ID
-	 * 
-	 * @return int returns the ID of the participants
-	 */
-	public int generateUniqueID() {
-		int newUniqueID = Collections.max(this.uniqueIDList) + 1;
-		uniqueIDList.add(newUniqueID);
-		return newUniqueID;
-	}
 
 	/**
 	 * This method is used to get all the swimmers that will be taking part in
@@ -45,6 +34,28 @@ public class ParticipantList {
 	 */
 	public ArrayList<Athlete> getSwimmers() {
 		return swimmers;
+	}
+
+	public Participants findParticipant(String athleteString) {
+		athleteString = athleteString.substring(athleteString.indexOf(':') + 1, athleteString.length());
+		athleteString = athleteString.replace(" ", "");
+		athleteString = athleteString.substring(0, athleteString.indexOf(','));
+		
+		return (findParticipantByID(athleteString)) ;
+	}
+
+	private Participants findParticipantByID(String athleteString) {
+		ArrayList<Participants> participants = new ArrayList<Participants>();
+		participants.addAll(swimmers);
+		participants.addAll(sprinters);
+		participants.addAll(cyclists);
+		participants.addAll(superAthletes);
+		
+		for(Participants participant: participants) {
+			if(participant.getUniqueID().equals(athleteString))
+			return participant;
+		}
+		return null;
 	}
 
 	/**
@@ -98,53 +109,148 @@ public class ParticipantList {
 	 * 
 	 */
 	public ParticipantList() {
-		uniqueIDList.add(0);
-
-		swimmers.add(new Swimmer("Naruto Uzumaki", 14, "VIC", this.generateUniqueID()));
-		swimmers.add(new Swimmer("Sasuke Mazamaki", 14, "VIC", this.generateUniqueID()));
-		swimmers.add(new Swimmer("Sakura Tuzamaki", 18, "VIC", this.generateUniqueID()));
-		swimmers.add(new Swimmer("Hinata Amchi", 21, "VIC", this.generateUniqueID()));
-		swimmers.add(new Swimmer("Roshi Kimchi", 24, "VIC", this.generateUniqueID()));
-		swimmers.add(new Swimmer("Kiba Maka", 21, "VIC", this.generateUniqueID()));
-		swimmers.add(new Swimmer("Shisui Naka", 20, "VIC", this.generateUniqueID()));
-		swimmers.add(new Swimmer("Kakashi Saka", 19, "VIC", this.generateUniqueID()));
-
-		sprinters.add(new Sprinter("Usain Bolt", 14, "VIC", this.generateUniqueID()));
-		sprinters.add(new Sprinter("Tyson Gay", 14, "VIC", this.generateUniqueID()));
-		sprinters.add(new Sprinter("Asafa Powell", 18, "VIC", this.generateUniqueID()));
-		sprinters.add(new Sprinter("Maurice Green", 21, "VIC", this.generateUniqueID()));
-		sprinters.add(new Sprinter("Deep Sharma", 24, "VIC", this.generateUniqueID()));
-		sprinters.add(new Sprinter("Soumil Naik", 21, "VIC", this.generateUniqueID()));
-		sprinters.add(new Sprinter("Eashan Tilve", 20, "VIC", this.generateUniqueID()));
-		sprinters.add(new Sprinter("Chaitrali Inamdar", 19, "VIC", this.generateUniqueID()));
-
-		cyclists.add(new Cyclist("Sujit Sabnis", 14, "VIC", this.generateUniqueID()));
-		cyclists.add(new Cyclist("Tommy Godwin", 14, "VIC", this.generateUniqueID()));
-		cyclists.add(new Cyclist("Kurt Searvogel", 18, "VIC", this.generateUniqueID()));
-		cyclists.add(new Cyclist("Amanda Coker", 21, "VIC", this.generateUniqueID()));
-		cyclists.add(new Cyclist("Craig Canon", 24, "VIC", this.generateUniqueID()));
-		cyclists.add(new Cyclist("Christoph Strasser", 21, "VIC", this.generateUniqueID()));
-		cyclists.add(new Cyclist("Jens Stotzner", 20, "VIC", this.generateUniqueID()));
-		cyclists.add(new Cyclist("Steve Abraham", 19, "VIC", this.generateUniqueID()));
-
-		superAthletes.add(new SuperAthlete("Rohit Deshpande", 14, "VIC", this.generateUniqueID()));
-		superAthletes.add(new SuperAthlete("Carol Saldanha", 14, "VIC", this.generateUniqueID()));
-		superAthletes.add(new SuperAthlete("King Chang", 18, "VIC", this.generateUniqueID()));
-		superAthletes.add(new SuperAthlete("Niraj Bohra", 21, "VIC", this.generateUniqueID()));
-		superAthletes.add(new SuperAthlete("Nick Battliwala", 24, "VIC", this.generateUniqueID()));
-		superAthletes.add(new SuperAthlete("Shon Desai", 21, "VIC", this.generateUniqueID()));
-		superAthletes.add(new SuperAthlete("Andrew Nicholson", 20, "VIC", this.generateUniqueID()));
-		superAthletes.add(new SuperAthlete("david Hoffstadter", 19, "VIC", this.generateUniqueID()));
-
-		officials.add(new Official("Sachin Tendulkar", 14, "VIC", this.generateUniqueID()));
-		officials.add(new Official("Virat Kohli", 14, "VIC", this.generateUniqueID()));
-		officials.add(new Official("Peter Saagan", 18, "VIC", this.generateUniqueID()));
-		officials.add(new Official("Roger Federer", 21, "VIC", this.generateUniqueID()));
-		officials.add(new Official("Bobby Root", 24, "VIC", this.generateUniqueID()));
-		officials.add(new Official("Tanmay Durve", 21, "VIC", this.generateUniqueID()));
-		officials.add(new Official("Shaarang Bandhekar", 20, "VIC", this.generateUniqueID()));
-		officials.add(new Official("Saurabh Ganguli", 19, "VIC", this.generateUniqueID()));
-
+		System.out.println("Reading Participants..");
+		readParticipants();
 	}
 
+	@Override
+	public String toString() {
+		return "ParticipantList [swimmers=" + swimmers + ", sprinters=" + sprinters + ", cyclists=" + cyclists
+				+ ", superAthletes=" + superAthletes + ", officials=" + officials + "]";
+	}
+
+	private ArrayList<Participants> readParticipants() {
+
+		FileHandler file = new FileHandler();
+		ArrayList<String> lines = file.readFile("/database/Participants.txt");
+		return obtainParticipants(lines);
+	}
+
+	private ArrayList<Participants> obtainParticipants(ArrayList<String> lines) {
+
+		for (String line : lines) {
+			if (!validateLine(line))
+				continue;
+			else {
+
+				categorizeParticipant(line);
+
+			}
+		}
+
+		return null;
+	}
+
+	private void categorizeParticipant(String line) {
+		String id = getNextElement(line);
+		line = returnReducedLine(line);
+		id = id.replace(" ", "");
+		
+		String type = getNextElement(line);
+		line = returnReducedLine(line);
+		type = type.replace(" ", "");
+
+		String name = getNextElement(line);
+		line = returnReducedLine(line);
+
+		String age = getNextElement(line);
+		line = returnReducedLine(line);
+		age = age.replace(" ", "");
+
+		String state = getNextElement(line);
+		line = returnReducedLine(line);
+		state = state.replace(" ", "");
+
+
+		if (id.length() == 0 || type.length() == 0 || name.length() == 0 || age.length() == 0 || state.length() == 0) {
+			System.out.println("Missing Attribute");
+		} else {
+			switch (type) {
+			case "swimmer": {
+				addToAthlete(new Swimmer(name, age, state, id));
+				break;
+			}
+			case "sprinter": {
+				addToAthlete(new Sprinter(name, age, state, id));
+				break;
+			}
+			case "cyclist": {
+				addToAthlete(new Cyclist(name, age, state, id));
+				break;
+			}
+			case "super": {
+				addToAthlete(new SuperAthlete(name, age, state, id));
+				break;
+			}
+			case "officer": {
+				addToOfficial(new Official(name, age, state, id));
+				break;
+			}
+			default:
+				System.out.println("invalid type");
+			}
+		}
+	}
+
+	private void addToOfficial(Official official) {
+		boolean alreadyExists = false;
+
+		for (Official existing : officials) {
+			if (existing.getUniqueID().equals(official.getUniqueID())) {
+				alreadyExists = true;
+			}
+		}
+
+		if (!alreadyExists) {
+			officials.add(official);
+		}
+	}
+
+	private void addToAthlete(Athlete athlete) {
+		boolean alreadyExists = false;
+		ArrayList<Athlete> athletes = null;
+		if (athlete instanceof Swimmer) {
+			athletes = swimmers;
+		} else if (athlete instanceof Sprinter) {
+			athletes = sprinters;
+		} else if (athlete instanceof Cyclist) {
+			athletes = cyclists;
+		} else if (athlete instanceof SuperAthlete) {
+			athletes = superAthletes;
+		}
+
+		for (Athlete athleteExisting : athletes) {
+			if (athleteExisting.getUniqueID().equals(athlete.getUniqueID())) {
+				alreadyExists = true;
+			}
+		}
+
+		if (!alreadyExists) {
+			athletes.add(athlete);
+		}
+	}
+
+	private String returnReducedLine(String line) {
+		return line.substring(line.indexOf(',') + 1, line.length());
+	}
+
+	private String getNextElement(String line) {
+		int position = 0;
+		String element = "";
+		while (position < line.length()) {
+			if (line.charAt(position) == ',') {
+				break;
+			}
+			element = element.concat(Character.toString(line.charAt(position++)));
+		}
+		return element;
+	}
+
+	// checks if line has 4 commas
+	private boolean validateLine(String line) {
+		if (line.length() - line.replace(",", "").length() != 4)
+			return false;
+
+		return true;
+	}
 }

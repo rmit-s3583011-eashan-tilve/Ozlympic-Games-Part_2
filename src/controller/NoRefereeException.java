@@ -3,8 +3,8 @@ package controller;
 public class NoRefereeException extends Exception {
 
 	public NoRefereeException() {
-		super();
-		System.out.println("This game has no referee assigned to it. Cannot run this game.");
+		super("Please assign a Referee To this Game.");
+		System.out.println("Please assign a Referee To this Game Before running it.");
 	}
 
 }

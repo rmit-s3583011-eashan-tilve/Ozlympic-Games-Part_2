@@ -44,48 +44,12 @@ public class Running extends Game {
 	 * 
 	 * @param String
 	 *            gameID: used to set running unique ID
-	 * @param Official
-	 *            official: used to assign an official to the running game
 	 */
-	public Running(String gameID, Official official) {
+	public Running(String gameID) {
 		this.gameID = gameID;
-		this.official = official;
 	}
 
-	/**
-	 * This method is used to assign the athletes and the official to the
-	 * running game.
-	 * 
-	 * @param ParticipantList
-	 *            participantList This parameter contains the list of all the
-	 *            participants
-	 */
-	public void assignContestants(ParticipantList participationList) {
-		int random = (int) (MAXIMUM_PARTICIPANT_COUNT
-				+ Math.random() * (MAXIMUM_PARTICIPANT_COUNT - MINIMUM_PARTICIPANT_COUNT + 1));
-
-		ArrayList<Athlete> chosenSprinters = new ArrayList<Athlete>();
-
-		for (Athlete athlete : participationList.getSprinters()) {
-			chosenSprinters.add(athlete);
-		}
-		for (Athlete athlete : participationList.getSuperAthletes()) {
-			chosenSprinters.add(athlete);
-		}
-
-		for (int participantCount = 1; participantCount <= random; participantCount++) {
-			int removeID = (int) (Math.random() * chosenSprinters.size());
-			chosenSprinters.remove(removeID);
-		}
-		this.contestants = chosenSprinters;
-
-		for (Athlete athlete : chosenSprinters) {
-			if (athlete instanceof SuperAthlete) {
-				((SuperAthlete) athlete).setCurrentGame(Driver.RUNNING);
-			}
-		}
-	}
-
+	
 	/**
 	 * This method is used to get the contestants of the running game
 	 * 
@@ -142,6 +106,10 @@ public class Running extends Game {
 	 */
 	public void setContestants(ArrayList<Athlete> contestants) {
 		this.contestants = contestants;
+	}
+	
+	public void setOfficial(Official official) {
+		this.official = official;
 	}
 
 }

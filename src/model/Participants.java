@@ -13,7 +13,7 @@ public abstract class Participants {
 	 * @return int
 	 *            returns the ID of the participants
 	 */
-	public abstract int getUniqueID();
+	public abstract String getUniqueID();
 
 	
 }

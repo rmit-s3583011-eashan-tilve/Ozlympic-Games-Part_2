@@ -34,11 +34,11 @@ Oz1029, super, Shon Desai, 21, TAS
 Oz1030, super, Andrew Nicholson, 20, VIC
 Oz1031, super, david Hoffstadter, 19, WA
 
-Oz1032, official, Sachin Tendulkar, 14, NSW
-Oz1033, official, Virat Kohli, 14, ACT
-Oz1034, official, Peter Saagan, 18, QLD
-Oz1035, official, Roger Federer, 21, TAS
-Oz1036, official, Bobby Root, 24, SA
-Oz1037, official, Tanmay Durve, 21, VIC
-Oz1038, official, Shaarang Bandhekar, 20, SA
-Oz1039, official, Saurabh Ganguli, 19, VIC
+Oz1032, officer, Sachin Tendulkar, 14, NSW
+Oz1033, officer, Virat Kohli, 14, ACT
+Oz1034, officer, Peter Saagan, 18, QLD
+Oz1035, officer, Roger Federer, 21, TAS
+Oz1036, officer, Bobby Root, 24, SA
+Oz1037, officer, Tanmay Durve, 21, VIC
+Oz1038, officer, Shaarang Bandhekar, 20, SA
+Oz1039, officer, Saurabh Ganguli, 19, VIC

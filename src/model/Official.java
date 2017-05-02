@@ -12,9 +12,9 @@ import java.util.HashMap;
 
 public class Official extends Participants {
 	private String name;
-	private int age;
+	private String age;
 	private String state;
-	private int uniqueID;
+	private String uniqueID;
 	private static final int FIRST_PLACE = 5;
 	private static final int SECOND_PLACE = 2;
 	private static final int THIRD_PLACE = 1;
@@ -24,15 +24,15 @@ public class Official extends Participants {
 	 * 
 	 * @param String
 	 *            name: name of the official
-	 * @param int
+	 * @param String
 	 *            age: age of the official
 	 * @param String
 	 *            state: state of the official
-	 * @param int
+	 * @param String
 	 *            uniqueID: ID of the official
 	 */
 
-	public Official(String name, int age, String state, int uniqueID) {
+	public Official(String name, String age, String state, String uniqueID) {
 		this.name = name;
 		this.age = age;
 		this.state = state;
@@ -52,7 +52,7 @@ public class Official extends Participants {
 	 */
 	@Override
 	public String toString() {
-		return "name=" + name + ", age=" + age + ", state=" + state + ", uniqueID=" + uniqueID;
+		return  "ID: " + uniqueID + ", NAME: " + name + ", AGE: " + age + ", STATE: " + state;
 	}
 
 	
@@ -63,7 +63,7 @@ public class Official extends Participants {
 	 * @return Official official
 	 */
 	@Override
-	public int getUniqueID() {
+	public String getUniqueID() {
 		return uniqueID;
 	}
 
