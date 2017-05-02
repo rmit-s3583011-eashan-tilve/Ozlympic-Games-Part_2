@@ -18,8 +18,8 @@ public class Ozlympic extends Application {
 	public final static int NEW_GAME = 1;
 	public final static int SELECT_CONTESTANTS = 2;
 	public final static int SELECT_OFFICIAL = 3;
+	public final static int PLAY_GAME = 4;
 	public static Driver driver = new Driver();
-	
 	private static int indexCurrent = 0;
 	@Override // Override the start method from the superclass
 	public void start(Stage primaryStage) {
@@ -29,6 +29,7 @@ public class Ozlympic extends Application {
 			grid.add((AnchorPane) FXMLLoader.load(getClass().getResource("/application/NewGame.fxml")));
 			grid.add((AnchorPane) FXMLLoader.load(getClass().getResource("/application/SelectContestants.fxml")));
 			grid.add((AnchorPane) FXMLLoader.load(getClass().getResource("/application/SelectOfficial.fxml")));
+			grid.add((AnchorPane) FXMLLoader.load(getClass().getResource("/application/PlayGame.fxml")));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Ozlympics");
@@ -39,6 +40,9 @@ public class Ozlympic extends Application {
 		}
 	}
 	
+	public static List<AnchorPane> getAnchorPane() {
+		return grid;
+	}
 	public static void set_pane(int index) {
 		root.getChildren().remove(grid.get(indexCurrent));
 		root.getChildren().add(grid.get(index));

@@ -53,6 +53,8 @@ public class SelectOfficial implements Initializable {
 			Game game = driver.getGame();
 			Official official = driver.getSelectedOfficial(this.official);
 			game.assignOfficial(official);
+			Ozlympic.set_pane(Ozlympic.PLAY_GAME);
+
 		}
 
 	}

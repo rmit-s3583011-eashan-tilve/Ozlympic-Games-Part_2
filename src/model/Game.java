@@ -17,11 +17,10 @@ import database.ParticipantList;
 public class Game {
 
 	private ArrayList<Game> games = new ArrayList<Game>();
-	private int currentGame;
-	private static final char CYCLING_ID = 'C';
-	private static final char RUNNING_ID = 'R';
-	private static final char SWIMMING_ID = 'S';
-	private static final int OFFICIALS_COUNT = 8;
+	private char currentGame;
+	public static final char CYCLING_ID = 'C';
+	public static final char RUNNING_ID = 'R';
+	public static final char SWIMMING_ID = 'S';
 	private static final int ARRAY_OFFSET = 2;
 	private static int gameCount = 1;
 
@@ -43,7 +42,7 @@ public class Game {
 	 *            currentGame: contains either 1,2 or 3 for swimming, cycling or
 	 *            runnning respectively.
 	 */
-	public void setCurrentGame(int currentGame) {
+	public void setCurrentGame(char currentGame) {
 		this.currentGame = currentGame;
 	}
 
@@ -53,10 +52,20 @@ public class Game {
 	 * @return int currentGame: contains either 1,2 or 3 for swimming, cycling
 	 *         or runnning respectively.
 	 */
-	public int getCurrentGame() {
+	public char getCurrentGame() {
 		return currentGame;
 	}
 
+	/**
+	 * This method is used to get the game that is currently selected
+	 * 
+	 * @return int currentGame: contains either 1,2 or 3 for swimming, cycling
+	 *         or runnning respectively.
+	 */
+	public Game getSelectedGame() {
+		return games.get(gameCount - ARRAY_OFFSET);
+	}
+	
 	/**
 	 * This method is used to get an array list of all games
 	 * 
@@ -142,12 +151,15 @@ public class Game {
 
 		Game game = this.games.get(gameCount - ARRAY_OFFSET);
 		if (game instanceof Swimming) {
+			this.setCurrentGame(SWIMMING_ID);
 			((Swimming) game).setContestants(athletes);
 		} else if (game instanceof Running) {
 			((Running) game).setContestants(athletes);
+			this.setCurrentGame(RUNNING_ID);
 
 		} else if (game instanceof Cycling) {
 			((Cycling) game).setContestants(athletes);
+			this.setCurrentGame(CYCLING_ID);
 
 		}
 
