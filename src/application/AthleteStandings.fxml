@@ -10,11 +10,6 @@
 
 <AnchorPane prefHeight="600" prefWidth="600" style="-fx-background-color: #1E1F26;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AthleteStandings">
    <children>
-      <ImageView fitHeight="455.0" fitWidth="600.0" layoutY="75.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
-         <image>
-            <Image url="@images/background.jpg" />
-         </image>
-      </ImageView>
       <Label layoutX="148.0" layoutY="40.0" text="ATHLETE STANDINGS" textFill="#d0e1f9">
          <font>
             <Font name="Krungthep" size="30.0" />
@@ -30,10 +25,10 @@
             <Font name="Krungthep" size="15.0" />
          </font>
       </Button>
-      <ListView fx:id="athletes" layoutX="33.0" layoutY="95.0" prefHeight="436.0" prefWidth="546.0" />
-      <ImageView fx:id="image" fitHeight="461.0" fitWidth="390.0" layoutX="103.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+      <ListView fx:id="athletes" layoutX="33.0" layoutY="95.0" prefHeight="410.0" prefWidth="546.0" />
+      <ImageView fx:id="image" fitHeight="486.0" fitWidth="546.0" layoutX="33.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/winners.png" />
+            <Image url="@images/winners.jpg" />
          </image>
       </ImageView>
    </children>

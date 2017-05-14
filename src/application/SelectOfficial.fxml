@@ -15,17 +15,17 @@
 				<Font name="Krungthep" size="30.0" />
 			</font>
 		</Label>
-		<Button layoutX="262.0" layoutY="493.0" mnemonicParsing="false" onAction="#onClickExit" text="EXIT">
+		<Button layoutX="264.0" layoutY="519.0" mnemonicParsing="false" onAction="#onClickExit" text="EXIT">
 			<font>
 				<Font name="Krungthep" size="21.0" />
 			</font>
 		</Button>
-      <Button layoutX="64.0" layoutY="493.0" mnemonicParsing="false" onAction="#onClickBack" text="BACK">
+      <Button layoutX="57.0" layoutY="519.0" mnemonicParsing="false" onAction="#onClickBack" text="BACK">
          <font>
             <Font name="Krungthep" size="21.0" />
          </font>
       </Button>
-      <Button layoutX="454.0" layoutY="493.0" mnemonicParsing="false" onAction="#onClickNext" text="NEXT">
+      <Button layoutX="458.0" layoutY="519.0" mnemonicParsing="false" onAction="#onClickNext" text="NEXT">
          <font>
             <Font name="Krungthep" size="21.0" />
          </font>

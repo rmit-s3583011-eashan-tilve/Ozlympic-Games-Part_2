@@ -99,4 +99,9 @@ public class Swimmer extends Athlete {
 	public String getName() {
 		return name;
 	}
+
+	@Override
+	public String getState() {
+		return state;
+	}
 }

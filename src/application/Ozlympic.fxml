@@ -10,9 +10,9 @@
 
 <AnchorPane prefHeight="600" prefWidth="600" style="-fx-background-color: #1E1F26;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AlgorithmController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0e1f9" height="299.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0e1f9" height="306.0" layoutX="408.0" layoutY="297.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <ImageView fitHeight="346.0" fitWidth="616.0" layoutX="-7.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0e1f9" height="300.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0e1f9" height="300.0" layoutX="400.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <ImageView fitHeight="346.0" fitWidth="600.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@images/background.jpg" />
          </image>
@@ -42,17 +42,17 @@
             <Font name="Krungthep" size="21.0" />
          </font>
       </Button>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-11.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/Olympic-Flame.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="127.0" fitWidth="135.0" layoutX="474.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="127.0" fitWidth="135.0" layoutX="470.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/symbol.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="458.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="447.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/Olympic-Flame.png" />
          </image>

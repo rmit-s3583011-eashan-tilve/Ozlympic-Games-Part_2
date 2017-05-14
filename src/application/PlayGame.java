@@ -167,13 +167,16 @@ public class PlayGame implements Initializable {
 	
 	@FXML
 	private Label fastForward;
+	
+	@FXML
+	private ImageView rings;
 
 	
 	public void onClickStart(ActionEvent event) {
 		Game game = Ozlympic.driver.getGame();
 		home.setVisible(false);
 		fastForward.setVisible(true);
-
+		rings.setVisible(false);
 		System.out.println(game.getCurrentGame());
 		if (game.getCurrentGame() == Game.SWIMMING_ID) {
 			fastForward.setText("Game Speed Fast Forwarded by: "+SWIMMING_FASTFORWARD+"x times");
@@ -425,6 +428,7 @@ public class PlayGame implements Initializable {
 	public void onClickHome(ActionEvent event) {
 		back.setVisible(true);
 		start.setVisible(true);
+		rings.setVisible(true);
 		Ozlympic.set_pane(Ozlympic.HOME);
 		clearAll();
 	}

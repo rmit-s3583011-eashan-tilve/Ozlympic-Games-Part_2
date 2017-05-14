@@ -102,4 +102,9 @@ public class Sprinter extends Athlete {
 		return name;
 	}
 
+	@Override
+	public String getState() {
+		return state;
+	}
+
 }

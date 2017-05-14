@@ -43,7 +43,7 @@ public class AthleteStandings implements Initializable {
 		Collections.sort(athletes, new AthleteCompare());
 
 		for (Athlete athlete : athletes)
-			this.athletes.getItems().add(athlete.getUniqueID() + ", " + athlete.getName() + ", " + athlete.getPoints());
+			this.athletes.getItems().add(athlete.getUniqueID() + ", " + athlete.getName() + ", "+athlete.getState() +", " + athlete.getPoints());
 		this.image.setVisible(false);
 		this.athletes.setVisible(true);
 	}

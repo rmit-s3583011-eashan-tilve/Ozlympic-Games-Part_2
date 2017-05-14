@@ -72,6 +72,8 @@ public class SelectContestants implements Initializable {
 	public void onClickBack(ActionEvent event) {
 
 		System.out.println("Back..");
+		Ozlympic.driver.getGame().getGames().remove(Ozlympic.driver.getGame().getSelectedGame());
+		Ozlympic.driver.getGame().decrementGameCount();
 		Ozlympic.set_pane(Ozlympic.NEW_GAME);
 		resetPage();
 	}
