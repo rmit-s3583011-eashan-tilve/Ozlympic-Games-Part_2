@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import application.Ozlympic;
+
 /**
  *
  * Class Description: Class that assigns Officials for all the games
@@ -97,6 +99,7 @@ public class Official extends Participants {
 			raceTimings.remove(nextAthlete);
 		}
 		printResults(sortedTimings, timings);
+		Ozlympic.driver.addGameResults(sortedTimings, timings);
 		return sortedTimings;
 	}
 

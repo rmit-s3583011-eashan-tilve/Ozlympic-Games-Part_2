@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-
 /**
  *
  * Class Description: Class that represents all games in ozlympics.
@@ -61,7 +60,7 @@ public class Game {
 	public Game getSelectedGame() {
 		return games.get(gameCount - ARRAY_OFFSET);
 	}
-	
+
 	/**
 	 * This method is used to get an array list of all games
 	 * 
@@ -77,7 +76,13 @@ public class Game {
 	 * @return Swimming new swimming game object
 	 */
 	public void CreateNewSwimmingGame() {
-		games.add(new Swimming(SWIMMING_ID + Integer.toString(gameCount++)));
+		String gameID;
+		if (gameCount < 10)
+			gameID = SWIMMING_ID + "0" + Integer.toString(gameCount++);
+		else
+			gameID = SWIMMING_ID + Integer.toString(gameCount++);
+
+		games.add(new Swimming(gameID));
 
 	}
 
@@ -87,8 +92,13 @@ public class Game {
 	 * @return Cycling new cycling game object
 	 */
 	public void CreateNewCyclingGame() {
-		games.add(new Cycling(CYCLING_ID + Integer.toString(gameCount++)));
+		String gameID;
+		if (gameCount < 10)
+			gameID = CYCLING_ID + "0" + Integer.toString(gameCount++);
+		else
+			gameID = CYCLING_ID + Integer.toString(gameCount++);
 
+		games.add(new Cycling(gameID));
 	}
 
 	/**
@@ -97,7 +107,13 @@ public class Game {
 	 * @return Running new running game object
 	 */
 	public void CreateNewRunningGame() {
-		games.add(new Running(RUNNING_ID + Integer.toString(gameCount++)));
+		String gameID;
+		if (gameCount < 10)
+			gameID = RUNNING_ID + "0" + Integer.toString(gameCount++);
+		else
+			gameID = RUNNING_ID + Integer.toString(gameCount++);
+
+		games.add(new Running(gameID));
 	}
 
 	/**
@@ -123,7 +139,7 @@ public class Game {
 	 * @return Official official
 	 */
 	public void assignOfficial(Official official) {
-		System.out.println("GC "+gameCount);
+		System.out.println("GC " + gameCount);
 		Game game = this.games.get(gameCount - ARRAY_OFFSET);
 		if (game instanceof Swimming) {
 			((Swimming) game).setOfficial(official);
@@ -135,8 +151,6 @@ public class Game {
 
 		}
 	}
-	
-	
 
 	/**
 	 * This method is used to assign the athletes and the official to the
@@ -161,15 +175,13 @@ public class Game {
 			this.setCurrentGame(CYCLING_ID);
 
 		}
-		
-		for(Athlete athlete:athletes){
-			if(athlete instanceof SuperAthlete) {
+
+		for (Athlete athlete : athletes) {
+			if (athlete instanceof SuperAthlete) {
 				((SuperAthlete) athlete).setCurrentGame(currentGame);
 			}
 		}
 
 	}
-	
-
 
 }

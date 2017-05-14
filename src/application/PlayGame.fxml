@@ -12,7 +12,7 @@
          <font>
             <Font name="Krungthep" size="21.0" />
          </font></Button>
-      <Button layoutX="242.0" layoutY="543.0" mnemonicParsing="false" onAction="#onClickHome" text="Home">
+      <Button fx:id="home" layoutX="242.0" layoutY="543.0" mnemonicParsing="false" onAction="#onClickHome" text="Home">
          <font>
             <Font name="Krungthep" size="21.0" />
          </font>
@@ -160,5 +160,10 @@
       <Circle fx:id="medal6" fill="DODGERBLUE" layoutX="372.0" layoutY="295.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="medal7" fill="DODGERBLUE" layoutX="372.0" layoutY="331.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="medal8" fill="DODGERBLUE" layoutX="372.0" layoutY="363.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="fastForward" layoutX="149.0" layoutY="555.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

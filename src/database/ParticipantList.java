@@ -24,7 +24,7 @@ public class ParticipantList {
 	private ArrayList<Athlete> cyclists = new ArrayList<Athlete>();
 	private ArrayList<Athlete> superAthletes = new ArrayList<Athlete>();
 	private ArrayList<Official> officials = new ArrayList<Official>();
-
+	private FileHandler file;
 	/**
 	 * This method is used to get all the swimmers that will be taking part in
 	 * Ozlympics
@@ -109,6 +109,8 @@ public class ParticipantList {
 	 */
 	public ParticipantList() {
 		System.out.println("Reading Participants..");
+		file = new FileHandler();
+
 		readParticipants();
 	}
 
@@ -119,12 +121,15 @@ public class ParticipantList {
 	}
 
 	private ArrayList<Participants> readParticipants() {
-
-		FileHandler file = new FileHandler();
 		ArrayList<String> lines = file.readFile("/database/Participants.txt");
 		return obtainParticipants(lines);
 	}
 
+	public void writeToGame(String msg) {
+
+		file.writeToGameResults(msg);
+	}
+	
 	private ArrayList<Participants> obtainParticipants(ArrayList<String> lines) {
 
 		for (String line : lines) {

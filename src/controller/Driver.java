@@ -1,9 +1,12 @@
 package controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import application.Ozlympic;
 import database.ParticipantList;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -25,14 +28,7 @@ import model.Swimming;
 public class Driver {
 
 	private Game game;
-
-	private Scanner scanInput = new Scanner(System.in);
 	private ParticipantList participantList;
-	private static final int OPTION_1 = 1;
-	private static final int OPTION_2 = 2;
-	private static final int OPTION_3 = 3;
-	private static final int OPTION_4 = 4;
-	private static final int OPTION_5 = 5;
 
 	public Game getGame() {
 		return game;
@@ -55,34 +51,6 @@ public class Driver {
 		System.out.println("Initializing Driver..");
 		participantList = new ParticipantList();
 		game = new Game();
-	}
-
-	/**
-	 * This method is used to display the options of the Game to the user
-	 */
-	private void showMenu() {
-
-		System.out.println("Ozlympic Game");
-		System.out.println("==========================================");
-		System.out.println("1. Select a	game to	run");
-		System.out.println("2. Start the game");
-		System.out.println("3. Display the final results of all games");
-		System.out.println("4. Display the points of all athletes");
-		System.out.println("5. Exit");
-
-	}
-
-	/**
-	 * This method is used to display the three games to the user
-	 */
-	private void gameMenu() {
-		System.out.println("Games:");
-		System.out.println("=============");
-		System.out.println("1. Swimming");
-		System.out.println("2. Cycling");
-		System.out.println("3. Running");
-		System.out.println("Which game do you want to run?");
-
 	}
 
 	/**
@@ -135,22 +103,59 @@ public class Driver {
 	public ArrayList<Athlete> getSelectedAthletes(ListView<String> selectedAthletes) {
 		ArrayList<Athlete> athletes = new ArrayList<Athlete>();
 		for (String athlete : selectedAthletes.getItems()) {
-			athletes.add((Athlete)participantList.findParticipant(athlete));
+			athletes.add((Athlete) participantList.findParticipant(athlete));
 		}
 		return athletes;
 	}
 
 	public Official getSelectedOfficial(String official) {
-		return (Official)participantList.findParticipant(official);
+		return (Official) participantList.findParticipant(official);
 	}
 
 	public ArrayList<Athlete> getSelectedAthletesBy(ObservableList<String> selectedItems) {
 		ArrayList<Athlete> athletes = new ArrayList<Athlete>();
 		for (String athlete : selectedItems) {
-			athletes.add((Athlete)participantList.findParticipant(athlete));
+			athletes.add((Athlete) participantList.findParticipant(athlete));
 		}
 
-		return athletes;	
+		return athletes;
+	}
+
+	public void addGameResults(ArrayList<Athlete> sortedTimings, HashMap<Athlete, Float> timings) {
+		System.out.println("Adding Game Results to file..");
+		String pattern = "yyyy-MM-dd' 'HH:mm:ss.S";
+		if (this.getGame().getSelectedGame() instanceof Cycling) {
+			Cycling game = (Cycling) Ozlympic.driver.getGame().getSelectedGame();
+			participantList.writeToGame(game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", "
+					+ new SimpleDateFormat(pattern).format(new Date()));
+
+		} else if (this.getGame().getSelectedGame() instanceof Swimming) {
+			Swimming game = (Swimming) Ozlympic.driver.getGame().getSelectedGame();
+			participantList.writeToGame(game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", "
+					+ new SimpleDateFormat(pattern).format(new Date()));
+
+		} else if (this.getGame().getSelectedGame() instanceof Running) {
+			Running game = (Running) Ozlympic.driver.getGame().getSelectedGame();
+			participantList.writeToGame(game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", "
+					+ new SimpleDateFormat(pattern).format(new Date()));
+
+		}
+		participantList.writeToGame("\n");
+		int athletePosition = 1;
+		for (Athlete athlete : sortedTimings) {
+			if (athletePosition == 1)
+				participantList.writeToGame(athlete.getUniqueID() + ", " + timings.get(athlete) + ", 5");
+			else if (athletePosition == 2)
+				participantList.writeToGame(athlete.getUniqueID() + ", " + timings.get(athlete) + ", 2");
+			else if (athletePosition == 3)
+				participantList.writeToGame(athlete.getUniqueID() + ", " + timings.get(athlete) + ", 1");
+			else
+				participantList.writeToGame(athlete.getUniqueID() + ", " + timings.get(athlete) + ", 0");
+
+			participantList.writeToGame("\n");
+			athletePosition++;
+		}
+		participantList.writeToGame("\n");
 	}
 
 }
