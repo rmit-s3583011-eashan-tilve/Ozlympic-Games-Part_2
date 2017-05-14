@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import database.ParticipantList;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import model.Athlete;
 import model.Cycling;
@@ -141,6 +142,15 @@ public class Driver {
 
 	public Official getSelectedOfficial(String official) {
 		return (Official)participantList.findParticipant(official);
+	}
+
+	public ArrayList<Athlete> getSelectedAthletesBy(ObservableList<String> selectedItems) {
+		ArrayList<Athlete> athletes = new ArrayList<Athlete>();
+		for (String athlete : selectedItems) {
+			athletes.add((Athlete)participantList.findParticipant(athlete));
+		}
+
+		return athletes;	
 	}
 
 }

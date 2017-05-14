@@ -17,7 +17,7 @@ public class SuperAthlete extends Athlete {
 	private String state;
 	private String uniqueID;
 	private int points = 0;
-	private int currentGame = 0;
+	private char currentGame = ' ';
 
 	/**
 	 * CONSTRUCTOR
@@ -48,7 +48,7 @@ public class SuperAthlete extends Athlete {
 	 *            currentGame: contains either 1,2 or 3 for swimming, cycling or
 	 *            runnning respectively.
 	 */
-	public void setCurrentGame(int currentGame) {
+	public void setCurrentGame(char currentGame) {
 		this.currentGame = currentGame;
 	}
 
@@ -74,15 +74,15 @@ public class SuperAthlete extends Athlete {
 	public float compete() {
 		Random randomGenerator = new Random();
 		switch (currentGame) {
-		case Driver.SWIMMING:
+		case Game.SWIMMING_ID:
 			return Swimmer.MINIMUM_SWIM_TIME
 					+ randomGenerator.nextFloat() * (Swimmer.MAXIMUM_SWIM_TIME - Swimmer.MINIMUM_SWIM_TIME);
 
-		case Driver.RUNNING:
+		case Game.RUNNING_ID:
 
 			return Sprinter.MINIMUM_SPRINT_TIME
 					+ randomGenerator.nextFloat() * (Sprinter.MAXIMUM_SPRINT_TIME - Sprinter.MINIMUM_SPRINT_TIME);
-		case Driver.CYCLING:
+		case Game.CYCLING_ID:
 
 			return Cyclist.MINIMUM_CYCLING_TIME
 					+ randomGenerator.nextFloat() * (Cyclist.MAXIMUM_CYCLING_TIME - Cyclist.MINIMUM_CYCLING_TIME);
@@ -124,4 +124,8 @@ public class SuperAthlete extends Athlete {
 		return this.points;
 	}
 
+	@Override
+	public String getName() {
+		return name;
+	}
 }

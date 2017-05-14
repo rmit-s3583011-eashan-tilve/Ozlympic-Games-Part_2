@@ -1,24 +1,17 @@
 package application;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import model.Game;
 
 
 public class NewGameController {
-
-
-
-	public void onClickSwimming(ActionEvent event) {
+public void onClickSwimming(ActionEvent event) {
 		
 		System.out.println("Swimming");
 		Ozlympic.driver.getGame().CreateNewSwimmingGame();
 		Ozlympic.set_pane(Ozlympic.SELECT_CONTESTANTS);
-
+		Game game = Ozlympic.driver.getGame();
+		game.setCurrentGame(Game.SWIMMING_ID);
 	}
 	
 	public void onClickCycling(ActionEvent event) {
@@ -26,7 +19,8 @@ public class NewGameController {
 		System.out.println("Cycling");
 		Ozlympic.driver.getGame().CreateNewCyclingGame();
 		Ozlympic.set_pane(Ozlympic.SELECT_CONTESTANTS);
-
+		Game game = Ozlympic.driver.getGame();
+		game.setCurrentGame(Game.CYCLING_ID);
 	}
 
 	public void onClickRunning(ActionEvent event) {
@@ -34,7 +28,8 @@ public class NewGameController {
 		System.out.println("Running");
 		Ozlympic.driver.getGame().CreateNewRunningGame();
 		Ozlympic.set_pane(Ozlympic.SELECT_CONTESTANTS);
-
+		Game game = Ozlympic.driver.getGame();
+		game.setCurrentGame(Game.RUNNING_ID);
 	}
 
 	public void onClickExit(ActionEvent event) {

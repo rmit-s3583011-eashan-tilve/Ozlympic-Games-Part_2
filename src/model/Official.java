@@ -126,4 +126,8 @@ public class Official extends Participants {
 				athlete.addPoints(THIRD_PLACE);
 		}
 	}
+
+	public String getName() {
+		return this.name;
+	}
 }

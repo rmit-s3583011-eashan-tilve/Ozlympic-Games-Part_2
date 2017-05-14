@@ -16,29 +16,9 @@ public class Cycling extends Game {
 
 	private String gameID;
 	private Official official;
-	private static final int MINIMUM_PARTICIPANT_COUNT = 5;
-	private static final int MAXIMUM_PARTICIPANT_COUNT = 8;
 	private HashMap<Athlete, Float> timings = new HashMap<Athlete, Float>();
 	private ArrayList<Athlete> contestants = new ArrayList<Athlete>();
-	private Athlete userPredictedWinner;
 
-	/**
-	 * This method is used to get the user predicted winner for this game
-	 * 
-	 * @return Athlete userPredictedWinner returns user predicted winner
-	 */
-	public Athlete getUserPredictedWinner() {
-		return userPredictedWinner;
-	}
-
-	/**
-	 * This method is used to set the user predicted winner for this game
-	 * 
-	 * @param Athlete userPredictedWinner 
-	 */
-	public void setUserPredictedWinner(Athlete userPredictedWinner) {
-		this.userPredictedWinner = userPredictedWinner;
-	}
 
 	/**
 	 * CONSTRUCTOR

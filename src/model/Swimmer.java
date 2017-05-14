@@ -95,4 +95,8 @@ public class Swimmer extends Athlete {
 		return  "ID: " + uniqueID + ", NAME: " + name + ", AGE: " + age + ", STATE: " + state;
 	}
 
+	@Override
+	public String getName() {
+		return name;
+	}
 }

@@ -1,11 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 
-import controller.Driver;
-import database.ParticipantList;
 
 /**
  *
@@ -127,6 +123,7 @@ public class Game {
 	 * @return Official official
 	 */
 	public void assignOfficial(Official official) {
+		System.out.println("GC "+gameCount);
 		Game game = this.games.get(gameCount - ARRAY_OFFSET);
 		if (game instanceof Swimming) {
 			((Swimming) game).setOfficial(official);
@@ -138,6 +135,8 @@ public class Game {
 
 		}
 	}
+	
+	
 
 	/**
 	 * This method is used to assign the athletes and the official to the
@@ -162,7 +161,15 @@ public class Game {
 			this.setCurrentGame(CYCLING_ID);
 
 		}
+		
+		for(Athlete athlete:athletes){
+			if(athlete instanceof SuperAthlete) {
+				((SuperAthlete) athlete).setCurrentGame(currentGame);
+			}
+		}
 
 	}
+	
+
 
 }

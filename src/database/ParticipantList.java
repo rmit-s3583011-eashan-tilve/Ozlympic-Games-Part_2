@@ -40,7 +40,6 @@ public class ParticipantList {
 		athleteString = athleteString.substring(athleteString.indexOf(':') + 1, athleteString.length());
 		athleteString = athleteString.replace(" ", "");
 		athleteString = athleteString.substring(0, athleteString.indexOf(','));
-		
 		return (findParticipantByID(athleteString)) ;
 	}
 
@@ -50,7 +49,7 @@ public class ParticipantList {
 		participants.addAll(sprinters);
 		participants.addAll(cyclists);
 		participants.addAll(superAthletes);
-		
+		participants.addAll(officials);
 		for(Participants participant: participants) {
 			if(participant.getUniqueID().equals(athleteString))
 			return participant;

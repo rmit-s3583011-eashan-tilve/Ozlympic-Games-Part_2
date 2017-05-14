@@ -2,6 +2,10 @@ Oz1000, swimmer, Naruto Uzumaki, 14, VIC
 Oz1001, swimmer, Sasuke Mazamaki, 14, ACT
 Oz1002, swimmer, Sakura Tuzamaki, 18, SA
 Oz1003, swimmer, Hinata Amchi, 21, NSW
+Oz1000, swimmer, Naruto Uzumaki, 14, VIC
+Oz1001, swimmer, Sasuke Mazamaki, 14, ACT
+Oz1002, swimmer, Sakura Tuzamaki, 18, SA
+Oz1003, swimmer, Hinata Amchi, 21, NSW
 Oz1004, swimmer, Roshi Kimchi, 24, TAS
 Oz1005, swimmer, Kiba Maka, 21, QLD
 Oz1006, swimmer, Shisui Naka, 20, VIC
@@ -11,7 +15,7 @@ Oz1008, sprinter, Usain Bolt, 14, VIC
 Oz1009, sprinter, Tyson Gay, 14, ACT
 Oz1010, sprinter, Asafa Powell, 18, NSW
 Oz1011, sprinter, Maurice Green, 21, VIC
-Oz1012, sprinter, Deep Sharma, 24, VIC
+Oz1012, super, Deep Sharma, 22, VIC
 Oz1013, sprinter, Soumil Naik, 21, QLD
 Oz1014, sprinter, Eashan Tilve, 20, TAS
 Oz1015, sprinter, Chaitrali Inamdar, 19, WA

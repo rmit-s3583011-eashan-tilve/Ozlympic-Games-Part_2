@@ -3,8 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import controller.Driver;
-import database.ParticipantList;
 
 /**
  *
@@ -13,8 +11,6 @@ import database.ParticipantList;
  * @author: Eashan Tilve
  */
 public class Running extends Game {
-	private static final int MINIMUM_PARTICIPANT_COUNT = 5;
-	private static final int MAXIMUM_PARTICIPANT_COUNT = 8;
 	private Athlete userPredictedWinner;
 	private ArrayList<Athlete> contestants = new ArrayList<Athlete>();
 	private HashMap<Athlete, Float> timings = new HashMap<Athlete, Float>();

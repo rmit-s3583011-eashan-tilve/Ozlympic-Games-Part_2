@@ -97,4 +97,8 @@ public class Cyclist extends Athlete {
 		return uniqueID;
 	}
 
+	@Override
+	public String getName() {
+		return name;
+	}
 }

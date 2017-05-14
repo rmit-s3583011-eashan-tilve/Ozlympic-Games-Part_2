@@ -3,8 +3,7 @@ package controller;
 public class TooFewAthleteException  extends Exception {
 
 	public TooFewAthleteException() {
-		super();
-		System.out.println("Not enough participants to run this game.");
+		super("Need atleast 4 Athletes to run run this game.");
 	}
 
 }

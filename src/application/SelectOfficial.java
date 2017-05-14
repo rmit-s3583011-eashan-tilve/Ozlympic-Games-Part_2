@@ -1,10 +1,7 @@
 package application;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import controller.Driver;
 import controller.NoRefereeException;
 import database.ParticipantList;
@@ -13,15 +10,10 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.stage.Stage;
-import model.Athlete;
 import model.Game;
 import model.Official;
 
@@ -41,9 +33,9 @@ public class SelectOfficial implements Initializable {
 		if (this.official.equals(UNASSIGNED)) {
 			System.out.println("unassigned");
 			try {
-			throw new NoRefereeException();
-			}catch(NoRefereeException e ) {
-			exception.setText(e.getMessage());
+				throw new NoRefereeException();
+			} catch (NoRefereeException e) {
+				exception.setText(e.getMessage());
 			}
 
 		} else {
@@ -54,7 +46,9 @@ public class SelectOfficial implements Initializable {
 			Official official = driver.getSelectedOfficial(this.official);
 			game.assignOfficial(official);
 			Ozlympic.set_pane(Ozlympic.PLAY_GAME);
-
+			officials.getItems().clear();
+			initializeList();
+			this.official = UNASSIGNED;
 		}
 
 	}
@@ -69,16 +63,24 @@ public class SelectOfficial implements Initializable {
 
 		System.out.println("Back..");
 		Ozlympic.set_pane(Ozlympic.SELECT_CONTESTANTS);
+		officials.getItems().clear();
+		initializeList();
+		this.official = UNASSIGNED;
+
 	}
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-
+	private void initializeList() {
 		ParticipantList participantList = Ozlympic.driver.getParticipantList();
 		officials.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 		for (Official official : participantList.getOfficials())
 			officials.getItems().add(official.toString());
+	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
+		initializeList();
 
 		officials.setOnMouseClicked(new EventHandler<Event>() {
 			@Override
