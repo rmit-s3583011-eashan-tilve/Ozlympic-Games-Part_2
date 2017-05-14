@@ -168,6 +168,7 @@ public class PlayGame implements Initializable {
 	@FXML
 	private Label fastForward;
 
+	
 	public void onClickStart(ActionEvent event) {
 		Game game = Ozlympic.driver.getGame();
 		home.setVisible(false);
@@ -418,8 +419,7 @@ public class PlayGame implements Initializable {
 			medals.get(getIndexFromIDs(game.getContestants().get(2).getUniqueID())).setFill(Color.DARKGOLDENROD);
 			medals.get(getIndexFromIDs(game.getContestants().get(2).getUniqueID())).setVisible(true);
 		}
-		
-
+		view.setVisible(false);
 	}
 
 	public void onClickHome(ActionEvent event) {

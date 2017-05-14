@@ -9,6 +9,11 @@
 
 <AnchorPane prefHeight="600" prefWidth="600" style="-fx-background-color: #1E1F26;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewGameController">
 	<children>
+	  <ImageView fitHeight="346.0" fitWidth="616.0" layoutX="-7.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+         <image>
+            <Image url="@images/background.jpg" />
+         </image>
+      </ImageView>
 		<Label layoutX="218.0" layoutY="43.0" text="New Game" textFill="#d0e1f9">
 			<font>
 				<Font name="Krungthep" size="30.0" />

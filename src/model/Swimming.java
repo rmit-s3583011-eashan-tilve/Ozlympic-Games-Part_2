@@ -13,30 +13,19 @@ import database.ParticipantList;
  * @author:Eashan Tilve
  */
 public class Swimming extends Game {
-	private static final int MINIMUM_PARTICIPANT_COUNT = 5;
-	private static final int MAXIMUM_PARTICIPANT_COUNT = 8;
+
 	private String gameID;
 	private Official official;
 	private ArrayList<Athlete> contestants = new ArrayList<Athlete>();
 	private HashMap<Athlete, Float> timings = new HashMap<Athlete, Float>();
-	private Athlete userPredictedWinner;
+	private String gameTime;
 
-	/**
-	 * This method is used to get the user predicted winner for this game
-	 * 
-	 * @return Athlete userPredictedWinner returns user predicted winner
-	 */
-	public Athlete getUserPredictedWinner() {
-		return userPredictedWinner;
+	public String getGameTime() {
+		return gameTime;
 	}
 
-	/**
-	 * This method is used to set the user predicted winner for this game
-	 * 
-	 * @param Athlete userPredictedWinner 
-	 */
-	public void setUserPredictedWinner(Athlete userPredictedWinner) {
-		this.userPredictedWinner = userPredictedWinner;
+	public void setGameTime(String gameTime) {
+		this.gameTime = gameTime;
 	}
 
 	/**

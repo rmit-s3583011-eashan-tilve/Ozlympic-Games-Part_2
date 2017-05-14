@@ -18,7 +18,15 @@ public class Cycling extends Game {
 	private Official official;
 	private HashMap<Athlete, Float> timings = new HashMap<Athlete, Float>();
 	private ArrayList<Athlete> contestants = new ArrayList<Athlete>();
+	private String gameTime;
 
+	public String getGameTime() {
+		return gameTime;
+	}
+
+	public void setGameTime(String gameTime) {
+		this.gameTime = gameTime;
+	}
 
 	/**
 	 * CONSTRUCTOR

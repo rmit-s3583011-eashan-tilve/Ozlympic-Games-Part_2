@@ -93,13 +93,6 @@ public class Driver {
 
 	}
 
-	/**
-	 * This method is used to display the results of all games in Ozlympics.
-	 */
-	private void displayResults() {
-
-	}
-
 	public ArrayList<Athlete> getSelectedAthletes(ListView<String> selectedAthletes) {
 		ArrayList<Athlete> athletes = new ArrayList<Athlete>();
 		for (String athlete : selectedAthletes.getItems()) {
@@ -126,18 +119,21 @@ public class Driver {
 		String pattern = "yyyy-MM-dd' 'HH:mm:ss.S";
 		if (this.getGame().getSelectedGame() instanceof Cycling) {
 			Cycling game = (Cycling) Ozlympic.driver.getGame().getSelectedGame();
+			game.setGameTime(new SimpleDateFormat(pattern).format(new Date()));
 			participantList.writeToGame(game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", "
-					+ new SimpleDateFormat(pattern).format(new Date()));
+					+ game.getGameTime());
 
 		} else if (this.getGame().getSelectedGame() instanceof Swimming) {
 			Swimming game = (Swimming) Ozlympic.driver.getGame().getSelectedGame();
+			game.setGameTime(new SimpleDateFormat(pattern).format(new Date()));
 			participantList.writeToGame(game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", "
-					+ new SimpleDateFormat(pattern).format(new Date()));
+					+ game.getGameTime());
 
 		} else if (this.getGame().getSelectedGame() instanceof Running) {
 			Running game = (Running) Ozlympic.driver.getGame().getSelectedGame();
+			game.setGameTime(new SimpleDateFormat(pattern).format(new Date()));
 			participantList.writeToGame(game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", "
-					+ new SimpleDateFormat(pattern).format(new Date()));
+					+ game.getGameTime());
 
 		}
 		participantList.writeToGame("\n");

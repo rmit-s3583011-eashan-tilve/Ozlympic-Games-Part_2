@@ -19,13 +19,13 @@ public class AlgorithmController {
 	public void onClickGameReults(ActionEvent event) {
 
 		System.out.println("Game Results..");
-		//Ozlympic.set_pane(0);
+		Ozlympic.set_pane(Ozlympic.GAME_RESULTS);
 	}
 
 	public void onClickAthleteStandings(ActionEvent event) {
 
-		System.out.println("Athlete Standings..");
-	//	Ozlympic.set_pane(0);
+		Ozlympic.set_pane(Ozlympic.STANDINGS);
+
 	}
 
 	public void onClickExit(ActionEvent event) {

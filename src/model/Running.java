@@ -11,29 +11,20 @@ import java.util.HashMap;
  * @author: Eashan Tilve
  */
 public class Running extends Game {
-	private Athlete userPredictedWinner;
 	private ArrayList<Athlete> contestants = new ArrayList<Athlete>();
 	private HashMap<Athlete, Float> timings = new HashMap<Athlete, Float>();
 	private String gameID;
 	private Official official;
+	private String gameTime;
 
-	/**
-	 * This method is used to get the user predicted winner for this game
-	 * 
-	 * @return Athlete userPredictedWinner returns user predicted winner
-	 */
-	public Athlete getUserPredictedWinner() {
-		return userPredictedWinner;
+	public String getGameTime() {
+		return gameTime;
 	}
 
-	/**
-	 * This method is used to set the user predicted winner for this game
-	 * 
-	 * @param Athlete userPredictedWinner 
-	 */
-	public void setUserPredictedWinner(Athlete userPredictedWinner) {
-		this.userPredictedWinner = userPredictedWinner;
+	public void setGameTime(String gameTime) {
+		this.gameTime = gameTime;
 	}
+	
 
 	/**
 	 * CONSTRUCTOR
