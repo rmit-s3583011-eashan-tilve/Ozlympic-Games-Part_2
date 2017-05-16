@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600" prefWidth="600" style="-fx-background-color: #4d4d4d;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PlayGame">
+   <children>
+      <Button fx:id="start" layoutX="172.0" layoutY="431.0" mnemonicParsing="false" onAction="#onClickStart" text="Let the Game Begin!">
+         <font>
+            <Font name="Krungthep" size="21.0" />
+         </font></Button>
+      <Button fx:id="home" layoutX="242.0" layoutY="543.0" mnemonicParsing="false" onAction="#onClickHome" text="Home">
+         <font>
+            <Font name="Krungthep" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="back" layoutX="52.0" layoutY="543.0" mnemonicParsing="false" onAction="#onClickBack" text="Back">
+         <font>
+            <Font name="Krungthep" size="21.0" />
+         </font>
+      </Button>
+      <Label fx:id="name1" layoutX="213.0" layoutY="126.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="time1" layoutX="391.0" layoutY="124.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="name2" layoutX="213.0" layoutY="158.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="time2" layoutX="391.0" layoutY="156.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="name3" layoutX="213.0" layoutY="190.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="time3" layoutX="391.0" layoutY="188.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="name4" layoutX="213.0" layoutY="222.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="time4" layoutX="391.0" layoutY="220.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="name5" layoutX="213.0" layoutY="255.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="time5" layoutX="391.0" layoutY="253.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="name6" layoutX="213.0" layoutY="287.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="time6" layoutX="391.0" layoutY="285.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="name7" layoutX="213.0" layoutY="323.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="time7" layoutX="391.0" layoutY="321.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="name8" layoutX="213.0" layoutY="355.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="time8" layoutX="391.0" layoutY="353.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="id1" layoutX="128.0" layoutY="126.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="id2" layoutX="128.0" layoutY="158.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="id3" layoutX="128.0" layoutY="190.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="id4" layoutX="128.0" layoutY="222.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="id5" layoutX="128.0" layoutY="255.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="id6" layoutX="128.0" layoutY="287.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="id7" layoutX="128.0" layoutY="323.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="id8" layoutX="128.0" layoutY="355.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="view" layoutX="385.0" layoutY="382.0" mnemonicParsing="false" onAction="#onClickView" text="View Results">
+         <font>
+            <Font name="Krungthep" size="11.0" />
+         </font>
+      </Button>
+      <Label fx:id="referee" layoutX="128.0" layoutY="386.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="12.0" />
+         </font>
+      </Label>
+      <Circle fx:id="medal1" fill="#1f93ff" layoutX="372.0" layoutY="134.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="medal2" fill="DODGERBLUE" layoutX="372.0" layoutY="166.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="medal3" fill="DODGERBLUE" layoutX="372.0" layoutY="198.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="medal4" fill="DODGERBLUE" layoutX="372.0" layoutY="230.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="medal5" fill="DODGERBLUE" layoutX="372.0" layoutY="265.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="medal6" fill="DODGERBLUE" layoutX="372.0" layoutY="295.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="medal7" fill="DODGERBLUE" layoutX="372.0" layoutY="331.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="medal8" fill="DODGERBLUE" layoutX="372.0" layoutY="363.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="fastForward" layoutX="149.0" layoutY="555.0" text="Label" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="rings" fitHeight="266.0" fitWidth="308.0" layoutX="167.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/rings.png" />
+         </image>
+      </ImageView>
+      <Circle fx:id="gold" fill="#1f93ff" layoutX="149.0" layoutY="422.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="silver" fill="#1f93ff" layoutX="254.0" layoutY="422.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="bronze" fill="#1f93ff" layoutX="354.0" layoutY="422.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="goldtext" layoutX="167.0" layoutY="415.0" prefHeight="15.0" prefWidth="67.0" text="= 5 points" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="silvertext" layoutX="267.0" layoutY="415.0" prefHeight="15.0" prefWidth="67.0" text="= 2 points" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="bronzetext" layoutX="372.0" layoutY="415.0" prefHeight="15.0" prefWidth="67.0" text="= 1 point" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

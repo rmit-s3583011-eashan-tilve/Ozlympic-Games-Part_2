@@ -379,7 +379,7 @@ public class ParticipantList {
 		}
 	}
 
-	private String returnReducedLine(String line) {
+	public String returnReducedLine(String line) {
 		return line.substring(line.indexOf(',') + 1, line.length());
 	}
 
@@ -389,7 +389,7 @@ public class ParticipantList {
 	 * 
 	 * @return String returns the next element
 	 */
-	private String getNextElement(String line) {
+	public String getNextElement(String line) {
 		int position = 0;
 		String element = "";
 		while (position < line.length()) {
@@ -406,7 +406,7 @@ public class ParticipantList {
 	 * 
 	 * @return boolean returns true if it has 4 commas
 	 */
-	private boolean validateLine(String line) {
+	public boolean validateLine(String line) {
 		if (line.length() - line.replace(",", "").length() != 4)
 			return false;
 
