@@ -1,5 +1,6 @@
 package controller;
 
+@SuppressWarnings("serial")
 public class TooFewAthleteException  extends Exception {
 
 	public TooFewAthleteException() {

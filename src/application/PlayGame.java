@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import controller.Driver;
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
@@ -18,7 +17,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.ArcTo;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.ClosePath;
@@ -55,6 +53,24 @@ public class PlayGame implements Initializable {
 	private ArrayList<Circle> medals = new ArrayList<Circle>();
 
 	@FXML
+	private Circle gold;
+
+	@FXML
+	private Circle silver;
+
+	@FXML
+	private Circle bronze;
+
+	@FXML
+	private Label goldtext;
+
+	@FXML
+	private Label silvertext;
+
+	@FXML
+	private Label bronzetext;
+
+	@FXML
 	private Circle medal1;
 
 	@FXML
@@ -89,7 +105,7 @@ public class PlayGame implements Initializable {
 
 	@FXML
 	private Button start;
-	
+
 	@FXML
 	private Button home;
 
@@ -164,14 +180,13 @@ public class PlayGame implements Initializable {
 
 	@FXML
 	private Label id8;
-	
+
 	@FXML
 	private Label fastForward;
-	
+
 	@FXML
 	private ImageView rings;
 
-	
 	public void onClickStart(ActionEvent event) {
 		Game game = Ozlympic.driver.getGame();
 		home.setVisible(false);
@@ -179,7 +194,7 @@ public class PlayGame implements Initializable {
 		rings.setVisible(false);
 		System.out.println(game.getCurrentGame());
 		if (game.getCurrentGame() == Game.SWIMMING_ID) {
-			fastForward.setText("Game Speed Fast Forwarded by: "+SWIMMING_FASTFORWARD+"x times");
+			fastForward.setText("Game Speed Fast Forwarded by: " + SWIMMING_FASTFORWARD + "x times");
 			Swimming nowRunning = (Swimming) game.getSelectedGame();
 			numberOfContestants = nowRunning.getContestants().size();
 			initializeContestants(nowRunning.getContestants());
@@ -189,7 +204,7 @@ public class PlayGame implements Initializable {
 			competeRace(nowRunning.getContestants());
 		}
 		if (game.getCurrentGame() == Game.RUNNING_ID) {
-			fastForward.setText("Game Speed Fast Forwarded by: "+RUNNING_FASTFORWARD+"x time");
+			fastForward.setText("Game Speed Fast Forwarded by: " + RUNNING_FASTFORWARD + "x time");
 			Running nowRunning = (Running) game.getSelectedGame();
 			numberOfContestants = nowRunning.getContestants().size();
 			initializeContestants(nowRunning.getContestants());
@@ -200,7 +215,7 @@ public class PlayGame implements Initializable {
 			competeRace(nowRunning.getContestants());
 		}
 		if (game.getCurrentGame() == Game.CYCLING_ID) {
-			fastForward.setText("Game Speed Fast Forwarded by: "+CYCLING_FASTFORWARD+"x times");
+			fastForward.setText("Game Speed Fast Forwarded by: " + CYCLING_FASTFORWARD + "x times");
 			Cycling nowRunning = (Cycling) game.getSelectedGame();
 			numberOfContestants = nowRunning.getContestants().size();
 			initializeContestants(nowRunning.getContestants());
@@ -208,7 +223,6 @@ public class PlayGame implements Initializable {
 					"Referee: " + nowRunning.getOfficial().getUniqueID() + "  " + nowRunning.getOfficial().getName());
 			setCyclists();
 			competeRace(nowRunning.getContestants());
-
 		}
 		view.setVisible(true);
 		back.setVisible(false);
@@ -232,7 +246,7 @@ public class PlayGame implements Initializable {
 			contestant.setX(-contestant.getImage().getWidth() / 2);
 			contestant.setY(300 - contestant.getImage().getHeight());
 			contestant.setRotate(90);
-			road.setStroke(Color.LIGHTBLUE);
+			road.setStroke(Color.LIGHTSKYBLUE);
 		}
 
 	}
@@ -385,7 +399,7 @@ public class PlayGame implements Initializable {
 	public void onClickView(ActionEvent event) {
 		home.setVisible(true);
 		fastForward.setVisible(false);
-
+		visibilityMedals(true);
 		for (int contestantNumber = 0; contestantNumber < numberOfContestants; contestantNumber++) {
 			times.get(contestantNumber).setVisible(true);
 		}
@@ -423,6 +437,8 @@ public class PlayGame implements Initializable {
 			medals.get(getIndexFromIDs(game.getContestants().get(2).getUniqueID())).setVisible(true);
 		}
 		view.setVisible(false);
+		if (driver.getParticipantList().getReadFrom().equals(driver.getParticipantList().DATABASE))
+			Ozlympic.driver.addResultsToDatabase();
 	}
 
 	public void onClickHome(ActionEvent event) {
@@ -434,7 +450,7 @@ public class PlayGame implements Initializable {
 	}
 
 	private void clearAll() {
-
+		visibilityMedals(false);
 		back.setVisible(true);
 		start.setVisible(true);
 		referee.setText("");
@@ -569,7 +585,19 @@ public class PlayGame implements Initializable {
 		medals.add(medal6);
 		medals.add(medal7);
 		medals.add(medal8);
+		gold.setFill(Color.GOLD);
+		silver.setFill(Color.SILVER);
+		bronze.setFill(Color.DARKGOLDENROD);
+		visibilityMedals(false);
+	}
 
+	private void visibilityMedals(boolean value) {
+		gold.setVisible(value);
+		silver.setVisible(value);
+		bronze.setVisible(value);
+		goldtext.setVisible(value);
+		silvertext.setVisible(value);
+		bronzetext.setVisible(value);
 	}
 
 }

@@ -12,8 +12,8 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
 public class Ozlympic extends Application {
-	static AnchorPane root;
-	static List<AnchorPane> grid = new ArrayList<AnchorPane>();
+	private static AnchorPane root;
+	private static List<AnchorPane> grid = new ArrayList<AnchorPane>();
 	public final static int HOME = 0;
 	public final static int NEW_GAME = 1;
 	public final static int SELECT_CONTESTANTS = 2;

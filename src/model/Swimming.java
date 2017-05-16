@@ -3,9 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import controller.Driver;
-import database.ParticipantList;
-
 /**
  *
  * Class Description: Class that represents Swimming games. Superclass: Game

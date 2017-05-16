@@ -1,5 +1,6 @@
 package controller;
 
+@SuppressWarnings("serial")
 public class GameFullException extends Exception {
 
 	public GameFullException() {

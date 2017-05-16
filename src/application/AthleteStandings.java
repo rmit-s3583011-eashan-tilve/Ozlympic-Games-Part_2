@@ -4,23 +4,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import model.Athlete;
-import model.Cycling;
-import model.Game;
-import model.Running;
-import model.Swimming;
 
 public class AthleteStandings implements Initializable {
 
@@ -37,7 +31,6 @@ public class AthleteStandings implements Initializable {
 	@FXML
 	private TableView<Results> athletes;
 	public ObservableList<Results> list = FXCollections.observableArrayList();
-
 
 	@FXML
 	private ImageView image = new ImageView();
@@ -60,13 +53,14 @@ public class AthleteStandings implements Initializable {
 		athletes.addAll(Ozlympic.driver.getParticipantList().getCyclists());
 		Collections.sort(athletes, new AthleteCompare());
 
-		for (Athlete athlete : athletes)
-			list.add(new Results(athlete.getUniqueID(), athlete.getName(),
-					athlete.getState(), "0"));
+		for (Athlete athlete : athletes) {
+			list.add(new Results(athlete.getUniqueID(), athlete.getName(), athlete.getState(),
+					Integer.toString(athlete.getPoints())));
+		}
 		this.athletes.setVisible(true);
+
 	}
 
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.athletes.setVisible(false);

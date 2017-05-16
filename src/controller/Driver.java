@@ -4,8 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Scanner;
-
 import application.Ozlympic;
 import database.ParticipantList;
 import javafx.collections.ObservableList;
@@ -29,6 +27,9 @@ public class Driver {
 
 	private Game game;
 	private ParticipantList participantList;
+	public static final int SWIMMING = 1;
+	public static final int CYCLING = 2;
+	public static final int RUNNING = 3;
 
 	public Game getGame() {
 		return game;
@@ -37,10 +38,6 @@ public class Driver {
 	public ParticipantList getParticipantList() {
 		return participantList;
 	}
-
-	public static final int SWIMMING = 1;
-	public static final int CYCLING = 2;
-	public static final int RUNNING = 3;
 
 	/**
 	 * CONSTRUCTOR
@@ -51,46 +48,6 @@ public class Driver {
 		System.out.println("Initializing Driver..");
 		participantList = new ParticipantList();
 		game = new Game();
-	}
-
-	/**
-	 * This method is used to display points of all the athletes in Ozlympics
-	 */
-	private void displayPoints() {
-
-		HashMap<Athlete, Integer> pointsTable = new HashMap<Athlete, Integer>();
-
-		for (Athlete swimmer : participantList.getSwimmers()) {
-			pointsTable.put(swimmer, swimmer.getPoints());
-		}
-		for (Athlete cyclist : participantList.getCyclists()) {
-			pointsTable.put(cyclist, cyclist.getPoints());
-		}
-		for (Athlete sprinter : participantList.getSprinters()) {
-			pointsTable.put(sprinter, sprinter.getPoints());
-		}
-		for (Athlete superAthlete : participantList.getSuperAthletes()) {
-			pointsTable.put(superAthlete, superAthlete.getPoints());
-		}
-
-		int maxPoints;
-		int athleteCount = 0;
-		Athlete nextAthlete = null;
-
-		while (!pointsTable.isEmpty()) {
-			maxPoints = 0;
-			for (Athlete athlete : pointsTable.keySet()) {
-				if (pointsTable.get(athlete) >= maxPoints) {
-					maxPoints = pointsTable.get(athlete);
-					nextAthlete = athlete;
-				}
-			}
-
-			System.out.println(++athleteCount + ". " + nextAthlete + " Points: " + pointsTable.get(nextAthlete));
-
-			pointsTable.remove(nextAthlete);
-		}
-
 	}
 
 	public ArrayList<Athlete> getSelectedAthletes(ListView<String> selectedAthletes) {
@@ -120,20 +77,20 @@ public class Driver {
 		if (this.getGame().getSelectedGame() instanceof Cycling) {
 			Cycling game = (Cycling) Ozlympic.driver.getGame().getSelectedGame();
 			game.setGameTime(new SimpleDateFormat(pattern).format(new Date()));
-			participantList.writeToGame(game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", "
-					+ game.getGameTime());
+			participantList.writeToGame(
+					game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", " + game.getGameTime());
 
 		} else if (this.getGame().getSelectedGame() instanceof Swimming) {
 			Swimming game = (Swimming) Ozlympic.driver.getGame().getSelectedGame();
 			game.setGameTime(new SimpleDateFormat(pattern).format(new Date()));
-			participantList.writeToGame(game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", "
-					+ game.getGameTime());
+			participantList.writeToGame(
+					game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", " + game.getGameTime());
 
 		} else if (this.getGame().getSelectedGame() instanceof Running) {
 			Running game = (Running) Ozlympic.driver.getGame().getSelectedGame();
 			game.setGameTime(new SimpleDateFormat(pattern).format(new Date()));
-			participantList.writeToGame(game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", "
-					+ game.getGameTime());
+			participantList.writeToGame(
+					game.getGameID() + ", " + game.getOfficial().getUniqueID() + ", " + game.getGameTime());
 
 		}
 		participantList.writeToGame("\n");
@@ -152,6 +109,10 @@ public class Driver {
 			athletePosition++;
 		}
 		participantList.writeToGame("\n");
+	}
+
+	public void addResultsToDatabase() {
+		participantList.addResultsToDatabase(this.getGame().getSelectedGame());
 	}
 
 }

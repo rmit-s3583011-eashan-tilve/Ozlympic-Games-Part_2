@@ -2,8 +2,6 @@ package model;
 
 import java.util.Random;
 
-import controller.Driver;
-
 /**
  *
  * Class Description: Class that represents swimmers. Superclass: Athlete
@@ -45,7 +43,7 @@ public class SuperAthlete extends Athlete {
 	 * athlete is playing
 	 * 
 	 * @param int
-	 *            currentGame: contains either 1,2 or 3 for swimming, cycling or
+	 *            currentGame: contains either S,C or R for swimming, cycling or
 	 *            runnning respectively.
 	 */
 	public void setCurrentGame(char currentGame) {
@@ -111,7 +109,7 @@ public class SuperAthlete extends Athlete {
 	 */
 	@Override
 	public String toString() {
-		return  "ID: " + uniqueID + ", NAME: " + name + ", AGE: " + age + ", STATE: " + state;
+		return "ID: " + uniqueID + ", NAME: " + name + ", AGE: " + age + ", STATE: " + state;
 	}
 
 	/**

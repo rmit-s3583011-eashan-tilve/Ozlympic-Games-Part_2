@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600" prefWidth="600" style="-fx-background-color: #6495ED;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PlayGame">
+<AnchorPane prefHeight="600" prefWidth="600" style="-fx-background-color: #4d4d4d;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PlayGame">
    <children>
       <Button fx:id="start" layoutX="172.0" layoutY="431.0" mnemonicParsing="false" onAction="#onClickStart" text="Let the Game Begin!">
          <font>
@@ -172,5 +172,23 @@
             <Image url="@images/rings.png" />
          </image>
       </ImageView>
+      <Circle fx:id="gold" fill="#1f93ff" layoutX="149.0" layoutY="422.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="silver" fill="#1f93ff" layoutX="254.0" layoutY="422.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="bronze" fill="#1f93ff" layoutX="354.0" layoutY="422.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="goldtext" layoutX="167.0" layoutY="415.0" prefHeight="15.0" prefWidth="67.0" text="= 5 points" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="silvertext" layoutX="267.0" layoutY="415.0" prefHeight="15.0" prefWidth="67.0" text="= 2 points" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="bronzetext" layoutX="372.0" layoutY="415.0" prefHeight="15.0" prefWidth="67.0" text="= 1 point" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

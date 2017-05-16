@@ -15,7 +15,9 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 import javafx.util.Callback;
 import model.Athlete;
 import model.Cycling;
@@ -24,16 +26,20 @@ import model.Running;
 import model.Swimming;
 
 public class GameResults implements Initializable {
-	   
+	@FXML
+	private ImageView image;  
 	@FXML
 	private Label gameID;
-
 	@FXML
 	private Label refereeID;
-
 	@FXML
 	private Label gametime;
-	
+	@FXML
+	private Circle gold;
+	@FXML
+	private Circle silver;
+	@FXML
+	private Circle bronze;
 	@FXML
 	private Button view;
 	@FXML
@@ -61,6 +67,12 @@ public class GameResults implements Initializable {
 		gameID.setVisible(false);
 		refereeID.setVisible(false);
 		gametime.setVisible(false);
+		gold.setVisible(false);
+		silver.setVisible(false);
+		bronze.setVisible(false);
+		image.setVisible(false);
+
+
 	}
 	
 	public void onClickView(ActionEvent event) {
@@ -74,6 +86,11 @@ public class GameResults implements Initializable {
 			gameID.setVisible(true);
 			refereeID.setVisible(true);
 			gametime.setVisible(true);
+			gold.setVisible(true);
+			silver.setVisible(true);
+			bronze.setVisible(true);
+			image.setVisible(true);
+
 		}
 		else {
 			refereeID.setVisible(true);
@@ -96,8 +113,9 @@ public class GameResults implements Initializable {
 					list.add(new Results(athlete.getUniqueID(), athlete.getName(),
 							Float.toString(game.getTimings().get(athlete)), "0"));
 				}
+				image.setImage(new Image("/application/images/cycling.png"));
 				gameID.setText("GAME: "+game.getGameID());
-				refereeID.setText("REFEREE: "+game.getOfficial().getUniqueID());
+				refereeID.setText("REFEREE: "+game.getOfficial().getName());
 				gametime.setText("TIME: "+game.getGameTime());
 			} else if (Ozlympic.driver.getGame().getGames().get(pageIndex) instanceof Swimming) {
 				Swimming game = (Swimming) Ozlympic.driver.getGame().getGames().get(pageIndex);
@@ -105,8 +123,9 @@ public class GameResults implements Initializable {
 					list.add(new Results(athlete.getUniqueID(), athlete.getName(),
 							Float.toString(game.getTimings().get(athlete)), "0"));
 				}
+				image.setImage(new Image("/application/images/swimming.png"));
 				gameID.setText("GAME: "+game.getGameID());
-				refereeID.setText("REFEREE: "+game.getOfficial().getUniqueID());
+				refereeID.setText("REFEREE: "+game.getOfficial().getName());
 				gametime.setText("TIME: "+game.getGameTime());
 			} else if (Ozlympic.driver.getGame().getGames().get(pageIndex) instanceof Running) {
 				Running game = (Running) Ozlympic.driver.getGame().getGames().get(pageIndex);
@@ -114,8 +133,9 @@ public class GameResults implements Initializable {
 					list.add(new Results(athlete.getUniqueID(), athlete.getName(),
 							Float.toString(game.getTimings().get(athlete)), "0"));
 				}
+				image.setImage(new Image("/application/images/running.png"));
 				gameID.setText("GAME: "+game.getGameID());
-				refereeID.setText("REFEREE: "+game.getOfficial().getUniqueID());
+				refereeID.setText("REFEREE: "+game.getOfficial().getName());
 				gametime.setText("TIME: "+game.getGameTime());
 			}
 			list.get(0).setPoints("5");
@@ -136,6 +156,7 @@ public class GameResults implements Initializable {
 		time.setCellValueFactory(new PropertyValueFactory<Results, String>("time"));
 		points.setCellValueFactory(new PropertyValueFactory<Results, String>("points"));
 		table.setItems(list);
+		image.setVisible(false);
 		pagination.setPageCount(2);
 		pagination.setMaxPageIndicatorCount(10);
 		view.setVisible(true);
@@ -145,7 +166,9 @@ public class GameResults implements Initializable {
 		gameID.setVisible(false);
 		refereeID.setVisible(false);
 		gametime.setVisible(false);
-
+		gold.setVisible(false);
+		silver.setVisible(false);
+		bronze.setVisible(false);
 		
 		pagination.setPageFactory(new Callback<Integer, Node>() {
 			@Override

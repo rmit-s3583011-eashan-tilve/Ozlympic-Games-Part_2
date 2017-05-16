@@ -1,5 +1,6 @@
 package controller;
 
+@SuppressWarnings("serial")
 public class WrongTypeException extends Exception {
 
 	public WrongTypeException() {

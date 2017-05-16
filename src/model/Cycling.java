@@ -3,9 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import controller.Driver;
-import database.ParticipantList;
-
 /**
  *
  * Class Description: Class that represents Cycling games. Superclass: Game
@@ -96,6 +93,11 @@ public class Cycling extends Game {
 		this.contestants = contestants;
 	}
 
+	/**
+	 * This method is used to set the official in the cycling game
+	 * 
+	 * @param Official
+	 */
 	public void setOfficial(Official official) {
 		this.official = official;
 	}

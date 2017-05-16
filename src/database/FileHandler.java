@@ -26,7 +26,7 @@ public class FileHandler {
 			writer.write(msg);
 			writer.close();
 		} catch (IOException e) {
-			// do something
+			e.printStackTrace();
 		}
 	}
 
@@ -36,7 +36,6 @@ public class FileHandler {
 			writer.append(msg);
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

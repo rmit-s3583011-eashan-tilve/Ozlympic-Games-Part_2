@@ -1,5 +1,6 @@
 package controller;
 
+@SuppressWarnings("serial")
 public class NoRefereeException extends Exception {
 
 	public NoRefereeException() {

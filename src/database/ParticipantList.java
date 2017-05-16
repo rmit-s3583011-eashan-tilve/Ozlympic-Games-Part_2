@@ -6,12 +6,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import model.Athlete;
+import model.Cycling;
 import model.Cyclist;
+import model.Game;
 import model.Official;
 import model.Participants;
+import model.Running;
 import model.Sprinter;
 import model.SuperAthlete;
 import model.Swimmer;
+import model.Swimming;
 
 /**
  *
@@ -31,7 +35,6 @@ public class ParticipantList {
 	public final String DATABASE = "ozlympic.db";
 	public final String FILE = "Participants.txt";
 	public final String ERROR = "ERROR, no source found";
-
 	private String readFrom = DATABASE;
 
 	/**
@@ -121,6 +124,7 @@ public class ParticipantList {
 		file = new FileHandler();
 		database = new SQLConnection();
 		Connection connection = database.createConnection();
+
 		if (!readFromDatabase(connection)) {
 			if (file.checkFile("Participants.txt")) {
 				readParticipants();
@@ -129,6 +133,43 @@ public class ParticipantList {
 				readFrom = ERROR;
 				System.out.println("file and database not found");
 			}
+		} else {
+			connection = database.createConnection();
+			refreshResultsTable(connection);
+		}
+	}
+
+	private void refreshResultsTable(Connection connection) {
+		Statement stmt = null;
+		try {
+
+			System.out.println("Creating statement...");
+			connection.setAutoCommit(true);
+			stmt = connection.createStatement();
+			String sql;
+			sql = "DELETE FROM RESULT";
+			stmt.execute(sql);
+			stmt.close();
+			connection.close();
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
 		}
 	}
 
@@ -136,7 +177,7 @@ public class ParticipantList {
 		return readFrom;
 	}
 
-	public boolean readFromDatabase(Connection connection) {
+	private boolean readFromDatabase(Connection connection) {
 		Statement stmt = null;
 		boolean dataRead = false;
 		try {
@@ -157,7 +198,7 @@ public class ParticipantList {
 				dataRead = true;
 				// Display values
 				categorizeParticipant(id + "," + type + "," + name + "," + age + "," + state);
-				
+
 			}
 			rs.close();
 			stmt.close();
@@ -326,5 +367,85 @@ public class ParticipantList {
 			return false;
 
 		return true;
+	}
+
+	public void addResultsToDatabase(Game selectedGame) {
+		Connection connection = database.createConnection();
+		Statement stmt = null;
+		try {
+
+			System.out.println("Adding Game results to database...");
+			connection.setAutoCommit(true);
+			stmt = connection.createStatement();
+			String sql;
+			int athletePosition = 1;
+			if (selectedGame instanceof Cycling) {
+				String gameID = ((Cycling) selectedGame).getGameID();
+				String officialID = ((Cycling) selectedGame).getOfficial().getUniqueID();
+				for (Athlete athlete : ((Cycling) selectedGame).getContestants()) {
+					String athleteID = athlete.getUniqueID();
+					String time = Float.toString(((Cycling) selectedGame).getTimings().get(athlete));
+					String points = Integer.toString((athletePosition == 1) ? 5 : ((athletePosition == 2) ? 2 : ((athletePosition == 3) ? 1 : 0 )));
+					athletePosition++;
+					sql = "INSERT INTO RESULT VALUES('" + gameID + "','" + officialID + "','" + athleteID + "','" + time
+							+ "','" + points + "')";
+					System.out.println(sql);
+					stmt.execute(sql);
+				}
+
+			}
+			else if (selectedGame instanceof Running) {
+				String gameID = ((Running) selectedGame).getGameID();
+				String officialID = ((Running) selectedGame).getOfficial().getUniqueID();
+				for (Athlete athlete : ((Running) selectedGame).getContestants()) {
+					String athleteID = athlete.getUniqueID();
+					String time = Float.toString(((Running) selectedGame).getTimings().get(athlete));
+					String points = Integer.toString((athletePosition == 1) ? 5 : ((athletePosition == 2) ? 2 : ((athletePosition == 3) ? 1 : 0 )));
+					athletePosition++;
+					sql = "INSERT INTO RESULT VALUES('" + gameID + "','" + officialID + "','" + athleteID + "','" + time
+							+ "','" + points + "')";
+					System.out.println(sql);
+					stmt.execute(sql);
+				}
+
+			}
+			else if (selectedGame instanceof Swimming) {
+				String gameID = ((Swimming) selectedGame).getGameID();
+				String officialID = ((Swimming) selectedGame).getOfficial().getUniqueID();
+				for (Athlete athlete : ((Swimming) selectedGame).getContestants()) {
+					String athleteID = athlete.getUniqueID();
+					String time = Float.toString(((Swimming) selectedGame).getTimings().get(athlete));
+					String points = Integer.toString((athletePosition == 1) ? 5 : ((athletePosition == 2) ? 2 : ((athletePosition == 3) ? 1 : 0 )));
+					athletePosition++;
+					sql = "INSERT INTO RESULT VALUES('" + gameID + "','" + officialID + "','" + athleteID + "','" + time
+							+ "','" + points + "')";
+					System.out.println(sql);
+					stmt.execute(sql);
+				}
+
+			}
+
+			stmt.close();
+			connection.close();
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
 	}
 }
