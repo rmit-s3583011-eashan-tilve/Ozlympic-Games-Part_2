@@ -4,15 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class FileHandler {
-
 
 	public FileHandler() {
 		try {
@@ -33,18 +29,17 @@ public class FileHandler {
 			// do something
 		}
 	}
-	
+
 	public void writeToGameResults(String msg) {
-			try {
-				FileWriter writer = new FileWriter("src/database/gameResults.txt",true);
-				writer.append(msg);
-				writer.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		
+		try {
+			FileWriter writer = new FileWriter("src/database/gameResults.txt", true);
+			writer.append(msg);
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	public ArrayList<String> readFile(String filename) {
@@ -63,6 +58,29 @@ public class FileHandler {
 		}
 
 		return lines;
+
+	}
+
+	public boolean checkFile(String filename) {
+		Scanner sc;
+		boolean fileExists = false;
+		System.out.println("Checking if file exists..");
+		try {
+			URL url = getClass().getResource(filename);
+			sc = new Scanner(new File(url.getPath()));
+
+			if (sc.hasNextLine()) {
+				fileExists = true;
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return fileExists;
 
 	}
 }

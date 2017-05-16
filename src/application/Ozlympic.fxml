@@ -62,5 +62,10 @@
             <Image url="@images/symbol.png" />
          </image>
       </ImageView>
+      <Label fx:id="readFrom" layoutX="180.0" layoutY="98.0" text="Ozlympics" textFill="#d0e1f9">
+         <font>
+            <Font name="Krungthep" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

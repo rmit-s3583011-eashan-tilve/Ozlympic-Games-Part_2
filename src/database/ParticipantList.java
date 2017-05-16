@@ -1,8 +1,10 @@
 package database;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collections;
-
 import model.Athlete;
 import model.Cyclist;
 import model.Official;
@@ -25,6 +27,13 @@ public class ParticipantList {
 	private ArrayList<Athlete> superAthletes = new ArrayList<Athlete>();
 	private ArrayList<Official> officials = new ArrayList<Official>();
 	private FileHandler file;
+	private SQLConnection database;
+	public final String DATABASE = "ozlympic.db";
+	public final String FILE = "Participants.txt";
+	public final String ERROR = "ERROR, no source found";
+
+	private String readFrom = DATABASE;
+
 	/**
 	 * This method is used to get all the swimmers that will be taking part in
 	 * Ozlympics
@@ -40,7 +49,7 @@ public class ParticipantList {
 		athleteString = athleteString.substring(athleteString.indexOf(':') + 1, athleteString.length());
 		athleteString = athleteString.replace(" ", "");
 		athleteString = athleteString.substring(0, athleteString.indexOf(','));
-		return (findParticipantByID(athleteString)) ;
+		return (findParticipantByID(athleteString));
 	}
 
 	private Participants findParticipantByID(String athleteString) {
@@ -50,9 +59,9 @@ public class ParticipantList {
 		participants.addAll(cyclists);
 		participants.addAll(superAthletes);
 		participants.addAll(officials);
-		for(Participants participant: participants) {
-			if(participant.getUniqueID().equals(athleteString))
-			return participant;
+		for (Participants participant : participants) {
+			if (participant.getUniqueID().equals(athleteString))
+				return participant;
 		}
 		return null;
 	}
@@ -110,8 +119,70 @@ public class ParticipantList {
 	public ParticipantList() {
 		System.out.println("Reading Participants..");
 		file = new FileHandler();
+		database = new SQLConnection();
+		Connection connection = database.createConnection();
+		if (!readFromDatabase(connection)) {
+			if (file.checkFile("Participants.txt")) {
+				readParticipants();
+				readFrom = FILE;
+			} else {
+				readFrom = ERROR;
+				System.out.println("file and database not found");
+			}
+		}
+	}
 
-		readParticipants();
+	public String getReadFrom() {
+		return readFrom;
+	}
+
+	public boolean readFromDatabase(Connection connection) {
+		Statement stmt = null;
+		boolean dataRead = false;
+		try {
+
+			System.out.println("Creating statement...");
+			stmt = connection.createStatement();
+			String sql;
+			sql = "SELECT * FROM participants";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				// Retrieve by column name
+				String id = rs.getString("id");
+				String type = rs.getString("type");
+				String name = rs.getString("name");
+				String age = rs.getString("age");
+				String state = rs.getString("state");
+				dataRead = true;
+				// Display values
+				categorizeParticipant(id + "," + type + "," + name + "," + age + "," + state);
+				
+			}
+			rs.close();
+			stmt.close();
+			connection.close();
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return dataRead;
 	}
 
 	@Override
@@ -129,7 +200,7 @@ public class ParticipantList {
 
 		file.writeToGameResults(msg);
 	}
-	
+
 	private ArrayList<Participants> obtainParticipants(ArrayList<String> lines) {
 
 		for (String line : lines) {
@@ -149,7 +220,7 @@ public class ParticipantList {
 		String id = getNextElement(line);
 		line = returnReducedLine(line);
 		id = id.replace(" ", "");
-		
+
 		String type = getNextElement(line);
 		line = returnReducedLine(line);
 		type = type.replace(" ", "");
@@ -164,7 +235,6 @@ public class ParticipantList {
 		String state = getNextElement(line);
 		line = returnReducedLine(line);
 		state = state.replace(" ", "");
-
 
 		if (id.length() == 0 || type.length() == 0 || name.length() == 0 || age.length() == 0 || state.length() == 0) {
 			System.out.println("Missing Attribute");

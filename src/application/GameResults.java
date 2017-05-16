@@ -33,8 +33,7 @@ public class GameResults implements Initializable {
 
 	@FXML
 	private Label gametime;
-	@FXML
-	private TableView<Results> table;
+	
 	@FXML
 	private Button view;
 	@FXML
@@ -47,6 +46,8 @@ public class GameResults implements Initializable {
 	private TableColumn<Results, String> time;
 	@FXML
 	private TableColumn<Results, String> points;
+	@FXML
+	private TableView<Results> table;
 	@FXML
 	private Pagination pagination;
 	public ObservableList<Results> list = FXCollections.observableArrayList();
