@@ -24,7 +24,12 @@ import model.Game;
 import model.Sprinter;
 import model.SuperAthlete;
 import model.Swimmer;
-
+/**
+*
+* Class Description: Controller class for SelectContestants.fxml
+* 
+* @author : Eashan Tilve
+*/
 public class SelectContestants implements Initializable {
 
 	protected static final int MAX_ATHELETES = 8;
@@ -38,7 +43,12 @@ public class SelectContestants implements Initializable {
 
 	@FXML
 	private ListView<String> selectedAthletes = new ListView<String>();
-
+	/**
+	 * This method is called when the user clicks on Next
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	public void onClickNext(ActionEvent event) {
 		System.out.println("Next");
 		if (count < 4) {
@@ -62,13 +72,23 @@ public class SelectContestants implements Initializable {
 		count = 0;
 		exception.setText("");
 	}
-
+	/**
+	 * This method is called when the user clicks on Exit
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	public void onClickExit(ActionEvent event) {
 
 		System.out.println("Exiting..");
 		System.exit(0);
 	}
-
+	/**
+	 * This method is called when the user clicks on Back
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	public void onClickBack(ActionEvent event) {
 
 		System.out.println("Back..");
@@ -78,6 +98,12 @@ public class SelectContestants implements Initializable {
 		resetPage();
 	}
 
+	/**
+	 * This method is used to check if the athlete type in the list is correct
+	 * 
+	 * @param ObservableList<String> selectedItems
+	 * @return boolean
+	 */
 	private boolean isTypeCorrect(ObservableList<String> selectedItems) {
 		Driver driver = Ozlympic.driver;
 		Game game = driver.getGame();
@@ -112,6 +138,11 @@ public class SelectContestants implements Initializable {
 		initializeAthletes();
 	}
 
+	/**
+	 * This method is used to initialize Athletes
+	 * 
+	 * @return void
+	 */
 	private void initializeAthletes() {
 		ParticipantList participantList = Ozlympic.driver.getParticipantList();
 
@@ -125,6 +156,18 @@ public class SelectContestants implements Initializable {
 			athletes.getItems().add("SUPER ATHLETE " + athlete.toString());
 	}
 
+	 /**
+     * Called to initialize a controller after its root element has been
+     * completely processed.
+     *
+     * @param location
+     * The location used to resolve relative paths for the root object, or
+     * <tt>null</tt> if the location is not known.
+     *
+     * @param resources
+     * The resources used to localize the root object, or <tt>null</tt> if
+     * the root object was not localized.
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -157,6 +200,8 @@ public class SelectContestants implements Initializable {
 						athletes.getSelectionModel().select(-1);
 						athletes.getItems().remove(s);
 						count++;
+						exception.setText("");
+
 					}
 				}
 			}

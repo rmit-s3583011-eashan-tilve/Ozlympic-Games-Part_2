@@ -16,7 +16,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import model.Game;
 import model.Official;
-
+/**
+*
+* Class Description: Controller class for SelectOfficial.fxml
+* 
+* @author : Eashan Tilve
+*/
 public class SelectOfficial implements Initializable {
 
 	private static final String UNASSIGNED = "UNASSIGNED";
@@ -28,6 +33,12 @@ public class SelectOfficial implements Initializable {
 
 	private String official = UNASSIGNED;
 
+	/**
+	 * This method is called when the user clicks on Next
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	public void onClickNext(ActionEvent event) {
 
 		if (this.official.equals(UNASSIGNED)) {
@@ -53,12 +64,24 @@ public class SelectOfficial implements Initializable {
 
 	}
 
+	/**
+	 * This method is called when the user clicks on Exit
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	public void onClickExit(ActionEvent event) {
 
 		System.out.println("Exiting..");
 		System.exit(0);
 	}
 
+	/**
+	 * This method is called when the user clicks on Back
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	public void onClickBack(ActionEvent event) {
 
 		System.out.println("Back..");
@@ -77,6 +100,18 @@ public class SelectOfficial implements Initializable {
 			officials.getItems().add(official.toString());
 	}
 	
+	/**
+     * Called to initialize a controller after its root element has been
+     * completely processed.
+     *
+     * @param location
+     * The location used to resolve relative paths for the root object, or
+     * <tt>null</tt> if the location is not known.
+     *
+     * @param resources
+     * The resources used to localize the root object, or <tt>null</tt> if
+     * the root object was not localized.
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 

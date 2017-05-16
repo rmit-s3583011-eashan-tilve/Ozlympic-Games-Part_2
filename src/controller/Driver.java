@@ -20,7 +20,7 @@ import model.Swimming;
  * Class Description: The driver class is where user interaction occurs, and it
  * uses other classes to manage the games.
  * 
- * @author : Carol Benita Saldanha
+ * @author : Eashan Tilve
  */
 
 public class Driver {
@@ -50,6 +50,13 @@ public class Driver {
 		game = new Game();
 	}
 
+	/**
+	 * Called to get selected athletes from ListView in an ArrayList
+	 * 
+	 * @param ListView<String>
+	 *            Strings containing details of athletes
+	 * @return ArrayList<Athlete> Returns ArrayList of the same athletes in Athlete Objects
+	 */
 	public ArrayList<Athlete> getSelectedAthletes(ListView<String> selectedAthletes) {
 		ArrayList<Athlete> athletes = new ArrayList<Athlete>();
 		for (String athlete : selectedAthletes.getItems()) {
@@ -58,6 +65,13 @@ public class Driver {
 		return athletes;
 	}
 
+	/**
+	 * Called to addResults to Database
+	 * 
+	 * @param String
+	 *            String containing the officials details
+	 * @return Official Returns the Official object
+	 */
 	public Official getSelectedOfficial(String official) {
 		return (Official) participantList.findParticipant(official);
 	}
@@ -71,6 +85,10 @@ public class Driver {
 		return athletes;
 	}
 
+	/**
+	 * Called to addResults to File gameResults.txt
+	 *
+	 */
 	public void addGameResults(ArrayList<Athlete> sortedTimings, HashMap<Athlete, Float> timings) {
 		System.out.println("Adding Game Results to file..");
 		String pattern = "yyyy-MM-dd' 'HH:mm:ss.S";
@@ -111,6 +129,10 @@ public class Driver {
 		participantList.writeToGame("\n");
 	}
 
+	/**
+	 * Called to addResults to Database
+	 *
+	 */
 	public void addResultsToDatabase() {
 		participantList.addResultsToDatabase(this.getGame().getSelectedGame());
 	}

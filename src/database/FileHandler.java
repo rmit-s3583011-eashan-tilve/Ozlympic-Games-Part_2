@@ -8,8 +8,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *
+ * Class Description: This class is used to handle Files Participants.txt and
+ * gameResults.txt
+ * 
+ * @author : Eashan Tilve
+ */
 public class FileHandler {
 
+	/**
+	 * CONSTRUCTOR
+	 * 
+	 */
 	public FileHandler() {
 		try {
 			FileWriter writer = new FileWriter("src/database/gameResults.txt");
@@ -20,6 +31,15 @@ public class FileHandler {
 		}
 	}
 
+	/**
+	 * This method is used to write data to a file
+	 * 
+	 * @param String
+	 *            filename
+	 * @param String
+	 *            msg Message to be writting in the file intializes
+	 *            participantList, game
+	 */
 	public void writeToFile(String filename, String msg) {
 		try {
 			FileWriter writer = new FileWriter(filename);
@@ -30,6 +50,15 @@ public class FileHandler {
 		}
 	}
 
+	/**
+	 * This method is used to write data to gameResults.txt
+	 * 
+	 * @param String
+	 *            filename
+	 * @param String
+	 *            msg Message to be writting in the file intializes
+	 *            participantList, game
+	 */
 	public void writeToGameResults(String msg) {
 		try {
 			FileWriter writer = new FileWriter("src/database/gameResults.txt", true);
@@ -41,6 +70,14 @@ public class FileHandler {
 
 	}
 
+	/**
+	 * This method is used to read data from a file
+	 * 
+	 * @param String
+	 *            filename
+	 * @return ArrayList<String>
+	 * 				returns contents of file in ArrayList of Strings
+	 */
 	public ArrayList<String> readFile(String filename) {
 		Scanner sc;
 		ArrayList<String> lines = new ArrayList<String>();
@@ -55,11 +92,17 @@ public class FileHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return lines;
-
 	}
 
+	/**
+	 * This method is used to check if file exists
+	 * 
+	 * @param String
+	 *            filename
+	 * @return boolean
+	 * 				returns true if file exists
+	 */
 	public boolean checkFile(String filename) {
 		Scanner sc;
 		boolean fileExists = false;

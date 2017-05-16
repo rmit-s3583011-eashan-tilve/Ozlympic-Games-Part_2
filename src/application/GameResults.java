@@ -25,9 +25,15 @@ import model.Game;
 import model.Running;
 import model.Swimming;
 
+/**
+ *
+ * Class Description: Controller class for GameResults.fxml
+ * 
+ * @author : Eashan Tilve
+ */
 public class GameResults implements Initializable {
 	@FXML
-	private ImageView image;  
+	private ImageView image;
 	@FXML
 	private Label gameID;
 	@FXML
@@ -58,6 +64,12 @@ public class GameResults implements Initializable {
 	private Pagination pagination;
 	public ObservableList<Results> list = FXCollections.observableArrayList();
 
+	/**
+	 * This method is called when the user clicks on Home
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	public void onClickHome(ActionEvent event) {
 		Ozlympic.set_pane(Ozlympic.HOME);
 		view.setVisible(true);
@@ -71,15 +83,19 @@ public class GameResults implements Initializable {
 		silver.setVisible(false);
 		bronze.setVisible(false);
 		image.setVisible(false);
-
-
 	}
-	
+
+	/**
+	 * This method is called when the user clicks on View
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	public void onClickView(ActionEvent event) {
 		view.setVisible(false);
-		
+
 		Game games = Ozlympic.driver.getGame();
-		if(games.getGames().size() > 0) {
+		if (games.getGames().size() > 0) {
 			table.setVisible(true);
 			pagination.setVisible(true);
 			medal.setVisible(false);
@@ -91,16 +107,23 @@ public class GameResults implements Initializable {
 			bronze.setVisible(true);
 			image.setVisible(true);
 
-		}
-		else {
+		} else {
 			refereeID.setVisible(true);
 			refereeID.setText("YOU HAVE NOT PLAYED ANY GAMES YET!");
 		}
 		pagination.setCurrentPageIndex(0);
 		pagination.setPageCount(games.getGames().size());
-		
+
 	}
 
+	/**
+	 * This method is used to display the game results when a new page on
+	 * pagination bar is clicked
+	 * 
+	 * @param Integer
+	 *            pageIndex
+	 * @return void
+	 */
 	private void showGameResult(Integer pageIndex) {
 		list.clear();
 		System.out.println(pageIndex);
@@ -114,9 +137,9 @@ public class GameResults implements Initializable {
 							Float.toString(game.getTimings().get(athlete)), "0"));
 				}
 				image.setImage(new Image("/application/images/cycling.png"));
-				gameID.setText("GAME: "+game.getGameID());
-				refereeID.setText("REFEREE: "+game.getOfficial().getName());
-				gametime.setText("TIME: "+game.getGameTime());
+				gameID.setText("GAME: " + game.getGameID());
+				refereeID.setText("REFEREE: " + game.getOfficial().getName());
+				gametime.setText("TIME: " + game.getGameTime());
 			} else if (Ozlympic.driver.getGame().getGames().get(pageIndex) instanceof Swimming) {
 				Swimming game = (Swimming) Ozlympic.driver.getGame().getGames().get(pageIndex);
 				for (Athlete athlete : game.getContestants()) {
@@ -124,9 +147,9 @@ public class GameResults implements Initializable {
 							Float.toString(game.getTimings().get(athlete)), "0"));
 				}
 				image.setImage(new Image("/application/images/swimming.png"));
-				gameID.setText("GAME: "+game.getGameID());
-				refereeID.setText("REFEREE: "+game.getOfficial().getName());
-				gametime.setText("TIME: "+game.getGameTime());
+				gameID.setText("GAME: " + game.getGameID());
+				refereeID.setText("REFEREE: " + game.getOfficial().getName());
+				gametime.setText("TIME: " + game.getGameTime());
 			} else if (Ozlympic.driver.getGame().getGames().get(pageIndex) instanceof Running) {
 				Running game = (Running) Ozlympic.driver.getGame().getGames().get(pageIndex);
 				for (Athlete athlete : game.getContestants()) {
@@ -134,9 +157,9 @@ public class GameResults implements Initializable {
 							Float.toString(game.getTimings().get(athlete)), "0"));
 				}
 				image.setImage(new Image("/application/images/running.png"));
-				gameID.setText("GAME: "+game.getGameID());
-				refereeID.setText("REFEREE: "+game.getOfficial().getName());
-				gametime.setText("TIME: "+game.getGameTime());
+				gameID.setText("GAME: " + game.getGameID());
+				refereeID.setText("REFEREE: " + game.getOfficial().getName());
+				gametime.setText("TIME: " + game.getGameTime());
 			}
 			list.get(0).setPoints("5");
 			list.get(1).setPoints("2");
@@ -169,7 +192,7 @@ public class GameResults implements Initializable {
 		gold.setVisible(false);
 		silver.setVisible(false);
 		bronze.setVisible(false);
-		
+
 		pagination.setPageFactory(new Callback<Integer, Node>() {
 			@Override
 			public Node call(Integer pageIndex) {

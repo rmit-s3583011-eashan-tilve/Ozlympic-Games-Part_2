@@ -32,6 +32,13 @@ import model.Official;
 import model.Running;
 import model.Swimming;
 
+/**
+ *
+ * Class Description: Controller class for PlayGame.fxml. Contains animation of
+ * the selected game.
+ * 
+ * @author : Eashan Tilve
+ */
 public class PlayGame implements Initializable {
 
 	private static final double WIDTH_OF_PATH = 95;
@@ -54,139 +61,101 @@ public class PlayGame implements Initializable {
 
 	@FXML
 	private Circle gold;
-
 	@FXML
 	private Circle silver;
-
 	@FXML
 	private Circle bronze;
-
 	@FXML
 	private Label goldtext;
-
 	@FXML
 	private Label silvertext;
-
 	@FXML
 	private Label bronzetext;
-
 	@FXML
 	private Circle medal1;
-
 	@FXML
 	private Circle medal2;
-
 	@FXML
 	private Circle medal3;
-
 	@FXML
 	private Circle medal4;
-
 	@FXML
 	private Circle medal5;
-
 	@FXML
 	private Circle medal6;
-
 	@FXML
 	private Circle medal7;
-
 	@FXML
 	private Circle medal8;
-
 	@FXML
 	private Button back;
-
 	@FXML
 	private Button view;
-
 	@FXML
 	private Label referee;
-
 	@FXML
 	private Button start;
-
 	@FXML
 	private Button home;
-
 	@FXML
 	private Label name1;
-
 	@FXML
 	private Label time1;
-
 	@FXML
 	private Label name2;
-
 	@FXML
 	private Label time2;
-
 	@FXML
 	private Label name3;
-
 	@FXML
 	private Label time3;
-
 	@FXML
 	private Label name4;
-
 	@FXML
 	private Label time4;
-
 	@FXML
 	private Label name5;
-
 	@FXML
 	private Label time5;
-
 	@FXML
 	private Label name6;
-
 	@FXML
 	private Label time6;
-
 	@FXML
 	private Label name7;
-
 	@FXML
 	private Label time7;
-
 	@FXML
 	private Label name8;
-
 	@FXML
 	private Label time8;
-
 	@FXML
 	private Label id1;
-
 	@FXML
 	private Label id2;
-
 	@FXML
 	private Label id3;
-
 	@FXML
 	private Label id4;
-
 	@FXML
 	private Label id5;
-
 	@FXML
 	private Label id6;
-
 	@FXML
 	private Label id7;
-
 	@FXML
 	private Label id8;
-
 	@FXML
 	private Label fastForward;
-
 	@FXML
 	private ImageView rings;
 
+	/**
+	 * This method is called when the user clicks on 'Let the Game Begin!'
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	public void onClickStart(ActionEvent event) {
 		Game game = Ozlympic.driver.getGame();
 		home.setVisible(false);
@@ -229,6 +198,13 @@ public class PlayGame implements Initializable {
 		start.setVisible(false);
 	}
 
+	/**
+	 * This method is used to initialize the Images of the contestants on the
+	 * animation
+	 * 
+	 * @param ArrayList<Athlete>
+	 * @return void
+	 */
 	private void initializeContestants(ArrayList<Athlete> arrayList) {
 		for (int contestantNumber = 0; contestantNumber < numberOfContestants; contestantNumber++) {
 			contestants.add(new ImageView());
@@ -237,6 +213,11 @@ public class PlayGame implements Initializable {
 		}
 	}
 
+	/**
+	 * This method is used to set images of swimmers
+	 * 
+	 * @return void
+	 */
 	private void setSwimmers() {
 
 		for (ImageView contestant : contestants) {
@@ -248,9 +229,13 @@ public class PlayGame implements Initializable {
 			contestant.setRotate(90);
 			road.setStroke(Color.LIGHTSKYBLUE);
 		}
-
 	}
 
+	/**
+	 * This method is used to set images of runners
+	 * 
+	 * @return void
+	 */
 	private void setRunners() {
 
 		for (ImageView contestant : contestants) {
@@ -263,9 +248,13 @@ public class PlayGame implements Initializable {
 			road.setStroke(Color.ORANGE);
 
 		}
-
 	}
 
+	/**
+	 * This method is used to set images of cyclists
+	 * 
+	 * @return void
+	 */
 	private void setCyclists() {
 
 		for (ImageView contestant : contestants) {
@@ -278,9 +267,14 @@ public class PlayGame implements Initializable {
 			road.setStroke(Color.LIGHTGREEN);
 
 		}
-
 	}
 
+	/**
+	 * This method is used to assign Paths to PathTransitions and run the
+	 * animation
+	 * 
+	 * @return void
+	 */
 	private void competeRace(ArrayList<Athlete> athletes) {
 		assignPathsToAnimation(athletes);
 		addAnimationsToRoot();
@@ -288,12 +282,22 @@ public class PlayGame implements Initializable {
 
 	}
 
+	/**
+	 * This method is used to run animation
+	 * 
+	 * @return void
+	 */
 	private void runAnimation() {
 		for (PathTransition anim : animations) {
 			anim.play();
 		}
 	}
 
+	/**
+	 * This method is used to stop animation
+	 * 
+	 * @return void
+	 */
 	private void stopAnimation() {
 		for (PathTransition anim : animations) {
 			anim.stop();
@@ -306,6 +310,11 @@ public class PlayGame implements Initializable {
 		}
 	}
 
+	/**
+	 * This method is used to add animations to root
+	 * 
+	 * @return void
+	 */
 	private void addAnimationsToRoot() {
 		List<AnchorPane> list = Ozlympic.getAnchorPane();
 
@@ -323,6 +332,11 @@ public class PlayGame implements Initializable {
 		road.setTranslateY(INITIAL_Y);
 	}
 
+	/**
+	 * This method is used to assign paths to PathTransition
+	 * @param ArrayList<Athlete> athletes
+	 * @return ArrayList<PathTransition> 
+	 */
 	private ArrayList<PathTransition> assignPathsToAnimation(ArrayList<Athlete> athletes) {
 
 		for (int contestantNumber = 0; contestantNumber < numberOfContestants; contestantNumber++) {
@@ -346,10 +360,14 @@ public class PlayGame implements Initializable {
 			anim.setCycleCount(1);
 			animations.add(anim);
 		}
-
 		return animations;
 	}
 
+	/**
+	 * This method is used to record game results
+	 * @param float time, int contestantNumber
+	 * @return void
+	 */
 	private void addGameResult(float time, int contestantNumber) {
 		Driver driver = Ozlympic.driver;
 
@@ -364,10 +382,14 @@ public class PlayGame implements Initializable {
 		} else if (driver.getGame().getSelectedGame() instanceof Running) {
 			Running game = (Running) Ozlympic.driver.getGame().getSelectedGame();
 			game.recordAthleteTime(time, game.getContestants().get(contestantNumber));
-
 		}
 	}
 
+	/**
+	 * This method is used to set the fastforward duration of current games
+	 * 
+	 * @return int
+	 */
 	private int setDurationOffset() {
 		Driver driver = Ozlympic.driver;
 		int durationOffset = 1;
@@ -381,6 +403,11 @@ public class PlayGame implements Initializable {
 		return durationOffset;
 	}
 
+	/**
+	 * This method is used to get the index of the ID entered in the parameter
+	 * @param String uniqueID
+	 * @return int
+	 */
 	private int getIndexFromIDs(String uniqueID) {
 
 		for (Label id : ids) {
@@ -391,11 +418,21 @@ public class PlayGame implements Initializable {
 		return -1;
 	}
 
+	/**
+	 * This method executes when the user clicks on the back button. It takes him to Select Official page.
+	 * @param ActionEvent event
+	 * @return void
+	 */
 	public void onClickBack(ActionEvent event) {
 		Ozlympic.set_pane(Ozlympic.SELECT_OFFICIAL);
 
 	}
 
+	/**
+	 * This method executes when the user clicks on View Results
+	 * @param ActionEvent event
+	 * @return void
+	 */
 	public void onClickView(ActionEvent event) {
 		home.setVisible(true);
 		fastForward.setVisible(false);
@@ -441,6 +478,11 @@ public class PlayGame implements Initializable {
 			Ozlympic.driver.addResultsToDatabase();
 	}
 
+	/**
+	 * This method executes when the user clicks on the home button. It takes him to the home page.
+	 * @param ActionEvent event
+	 * @return void
+	 */
 	public void onClickHome(ActionEvent event) {
 		back.setVisible(true);
 		start.setVisible(true);
@@ -449,6 +491,11 @@ public class PlayGame implements Initializable {
 		clearAll();
 	}
 
+	/**
+	 * This method is used to clear all the labels that need to be cleared while leaving the page.
+	 * 
+	 * @return void
+	 */
 	private void clearAll() {
 		visibilityMedals(false);
 		back.setVisible(true);
@@ -467,6 +514,18 @@ public class PlayGame implements Initializable {
 		contestants.clear();
 	}
 
+	/**
+     * Called to initialize a controller after its root element has been
+     * completely processed.
+     *
+     * @param location
+     * The location used to resolve relative paths for the root object, or
+     * <tt>null</tt> if the location is not known.
+     *
+     * @param resources
+     * The resources used to localize the root object, or <tt>null</tt> if
+     * the root object was not localized.
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -490,6 +549,11 @@ public class PlayGame implements Initializable {
 
 	}
 
+	/**
+	 * This method is used to initialize all the paths used in animation
+	 *  
+	 * @return void
+	 */
 	private void initializePaths() {
 
 		double arcOffset = 0;
@@ -543,6 +607,11 @@ public class PlayGame implements Initializable {
 
 	}
 
+	/**
+	 * This method is used to initialize all the paths used in animation
+	 *  
+	 * @return void
+	 */
 	private void initializeTimes() {
 		times.add(time1);
 		times.add(time2);
@@ -554,6 +623,11 @@ public class PlayGame implements Initializable {
 		times.add(time8);
 	}
 
+	/**
+	 * This method is used to initialize the IDs of all athletes
+	 *  
+	 * @return void
+	 */
 	private void initializeIDS() {
 		ids.add(id1);
 		ids.add(id2);
@@ -565,6 +639,11 @@ public class PlayGame implements Initializable {
 		ids.add(id8);
 	}
 
+	/**
+	 * This method is used to initialize the Names of all athletes
+	 *  
+	 * @return void
+	 */
 	private void initializeNames() {
 		names.add(name1);
 		names.add(name2);
@@ -575,7 +654,12 @@ public class PlayGame implements Initializable {
 		names.add(name7);
 		names.add(name8);
 	}
-
+	
+	/**
+	 * This method is used to initialize the Medals of all athletes
+	 *  
+	 * @return void
+	 */
 	private void initializeMedals() {
 		medals.add(medal1);
 		medals.add(medal2);
@@ -591,6 +675,11 @@ public class PlayGame implements Initializable {
 		visibilityMedals(false);
 	}
 
+	/**
+	 * This method is used to initialize the visibility of all medals
+	 *  
+	 * @return void
+	 */
 	private void visibilityMedals(boolean value) {
 		gold.setVisible(value);
 		silver.setVisible(value);

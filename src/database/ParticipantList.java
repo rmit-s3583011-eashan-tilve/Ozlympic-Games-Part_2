@@ -21,7 +21,7 @@ import model.Swimming;
  *
  * Class Description: Database Class that contains data of all the participants
  * 
- * @author : Carol Benita Saldanha
+ * @author : Eashan Tilve
  */
 public class ParticipantList {
 
@@ -48,6 +48,12 @@ public class ParticipantList {
 		return swimmers;
 	}
 
+	/**
+	 * This method is used to find object of the subclass of Participants from
+	 * the String of details of participant
+	 * 
+	 * @return Participants
+	 */
 	public Participants findParticipant(String athleteString) {
 		athleteString = athleteString.substring(athleteString.indexOf(':') + 1, athleteString.length());
 		athleteString = athleteString.replace(" ", "");
@@ -55,6 +61,12 @@ public class ParticipantList {
 		return (findParticipantByID(athleteString));
 	}
 
+	/**
+	 * This method is used to find object of the subclass of Participants from
+	 * the ID of the participant
+	 * 
+	 * @return Participants
+	 */
 	private Participants findParticipantByID(String athleteString) {
 		ArrayList<Participants> participants = new ArrayList<Participants>();
 		participants.addAll(swimmers);
@@ -116,7 +128,8 @@ public class ParticipantList {
 	/**
 	 * CONSTRUCTOR
 	 * 
-	 * creates the database of all participants
+	 * creates the objects of all participants by reading from the database or
+	 * the file
 	 * 
 	 */
 	public ParticipantList() {
@@ -177,6 +190,12 @@ public class ParticipantList {
 		return readFrom;
 	}
 
+	/**
+	 * This method is used to read from the database athlete data from the
+	 * database
+	 * 
+	 * @return boolean
+	 */
 	private boolean readFromDatabase(Connection connection) {
 		Statement stmt = null;
 		boolean dataRead = false;
@@ -250,13 +269,19 @@ public class ParticipantList {
 			else {
 
 				categorizeParticipant(line);
-
 			}
 		}
 
 		return null;
 	}
 
+	/**
+	 * This method is used categorize the athlete as a swimmer, cyclist,
+	 * sprinter or a super athlete
+	 * 
+	 * @param String
+	 *            String from file containing details of participant
+	 */
 	private void categorizeParticipant(String line) {
 		String id = getNextElement(line);
 		line = returnReducedLine(line);
@@ -307,6 +332,10 @@ public class ParticipantList {
 		}
 	}
 
+	/**
+	 * This method is used add unique Official object to ArrayList of Officials
+	 * 
+	 */
 	private void addToOfficial(Official official) {
 		boolean alreadyExists = false;
 
@@ -321,6 +350,11 @@ public class ParticipantList {
 		}
 	}
 
+	/**
+	 * This method is used categorize the athlete as a swimmer, cyclist,
+	 * sprinter or a super athlete
+	 * 
+	 */
 	private void addToAthlete(Athlete athlete) {
 		boolean alreadyExists = false;
 		ArrayList<Athlete> athletes = null;
@@ -349,6 +383,12 @@ public class ParticipantList {
 		return line.substring(line.indexOf(',') + 1, line.length());
 	}
 
+	/**
+	 * This method is used to get the next element in the string with comma
+	 * delimiters
+	 * 
+	 * @return String returns the next element
+	 */
 	private String getNextElement(String line) {
 		int position = 0;
 		String element = "";
@@ -361,7 +401,11 @@ public class ParticipantList {
 		return element;
 	}
 
-	// checks if line has 4 commas
+	/**
+	 * This method is used check if line has 4 commas
+	 * 
+	 * @return boolean returns true if it has 4 commas
+	 */
 	private boolean validateLine(String line) {
 		if (line.length() - line.replace(",", "").length() != 4)
 			return false;
@@ -369,6 +413,13 @@ public class ParticipantList {
 		return true;
 	}
 
+	/**
+	 * This method is used to add results from the selected game to the database
+	 * 
+	 * @param Game
+	 *            contains object of the selected game
+	 * @return void
+	 */
 	public void addResultsToDatabase(Game selectedGame) {
 		Connection connection = database.createConnection();
 		Statement stmt = null;
@@ -385,7 +436,8 @@ public class ParticipantList {
 				for (Athlete athlete : ((Cycling) selectedGame).getContestants()) {
 					String athleteID = athlete.getUniqueID();
 					String time = Float.toString(((Cycling) selectedGame).getTimings().get(athlete));
-					String points = Integer.toString((athletePosition == 1) ? 5 : ((athletePosition == 2) ? 2 : ((athletePosition == 3) ? 1 : 0 )));
+					String points = Integer.toString((athletePosition == 1) ? 5
+							: ((athletePosition == 2) ? 2 : ((athletePosition == 3) ? 1 : 0)));
 					athletePosition++;
 					sql = "INSERT INTO RESULT VALUES('" + gameID + "','" + officialID + "','" + athleteID + "','" + time
 							+ "','" + points + "')";
@@ -393,14 +445,14 @@ public class ParticipantList {
 					stmt.execute(sql);
 				}
 
-			}
-			else if (selectedGame instanceof Running) {
+			} else if (selectedGame instanceof Running) {
 				String gameID = ((Running) selectedGame).getGameID();
 				String officialID = ((Running) selectedGame).getOfficial().getUniqueID();
 				for (Athlete athlete : ((Running) selectedGame).getContestants()) {
 					String athleteID = athlete.getUniqueID();
 					String time = Float.toString(((Running) selectedGame).getTimings().get(athlete));
-					String points = Integer.toString((athletePosition == 1) ? 5 : ((athletePosition == 2) ? 2 : ((athletePosition == 3) ? 1 : 0 )));
+					String points = Integer.toString((athletePosition == 1) ? 5
+							: ((athletePosition == 2) ? 2 : ((athletePosition == 3) ? 1 : 0)));
 					athletePosition++;
 					sql = "INSERT INTO RESULT VALUES('" + gameID + "','" + officialID + "','" + athleteID + "','" + time
 							+ "','" + points + "')";
@@ -408,23 +460,21 @@ public class ParticipantList {
 					stmt.execute(sql);
 				}
 
-			}
-			else if (selectedGame instanceof Swimming) {
+			} else if (selectedGame instanceof Swimming) {
 				String gameID = ((Swimming) selectedGame).getGameID();
 				String officialID = ((Swimming) selectedGame).getOfficial().getUniqueID();
 				for (Athlete athlete : ((Swimming) selectedGame).getContestants()) {
 					String athleteID = athlete.getUniqueID();
 					String time = Float.toString(((Swimming) selectedGame).getTimings().get(athlete));
-					String points = Integer.toString((athletePosition == 1) ? 5 : ((athletePosition == 2) ? 2 : ((athletePosition == 3) ? 1 : 0 )));
+					String points = Integer.toString((athletePosition == 1) ? 5
+							: ((athletePosition == 2) ? 2 : ((athletePosition == 3) ? 1 : 0)));
 					athletePosition++;
 					sql = "INSERT INTO RESULT VALUES('" + gameID + "','" + officialID + "','" + athleteID + "','" + time
 							+ "','" + points + "')";
 					System.out.println(sql);
 					stmt.execute(sql);
 				}
-
 			}
-
 			stmt.close();
 			connection.close();
 		} catch (SQLException se) {

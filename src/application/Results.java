@@ -2,6 +2,12 @@ package application;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+*
+* Class Description: This class is used to create objects for TableView
+* 
+* @author : Eashan Tilve
+*/
 public class Results {
 
 	private final SimpleStringProperty id;
@@ -9,6 +15,12 @@ public class Results {
 	private final SimpleStringProperty time;
 	private final SimpleStringProperty points;
 
+	/**
+	 * CONSTRUCTOR
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	public Results(String id, String name, String time, String points) {
 		super();
 		this.id = new SimpleStringProperty(id);

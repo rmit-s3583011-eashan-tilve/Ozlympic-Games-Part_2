@@ -16,6 +16,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import model.Athlete;
 
+/**
+ *
+ * Class Description: Controller class for AthleteStandings.fxml
+ * 
+ * @author : Eashan Tilve
+ */
 public class AthleteStandings implements Initializable {
 
 	@FXML
@@ -35,6 +41,12 @@ public class AthleteStandings implements Initializable {
 	@FXML
 	private ImageView image = new ImageView();
 
+	/**
+	 * This method is called when the user clicks on Home
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	@FXML
 	void onClickHome(ActionEvent event) {
 		Ozlympic.set_pane(Ozlympic.HOME);
@@ -43,6 +55,12 @@ public class AthleteStandings implements Initializable {
 
 	}
 
+	/**
+	 * This method is called when the user clicks on View Results
+	 * 
+	 * @param ActionEvent
+	 * @return void
+	 */
 	@FXML
 	void onClickView(ActionEvent event) {
 		list.clear();
