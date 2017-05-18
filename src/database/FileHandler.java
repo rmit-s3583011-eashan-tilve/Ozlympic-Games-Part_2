@@ -24,6 +24,7 @@ public class FileHandler {
 	public FileHandler() {
 		try {
 			URL url = getClass().getResource("gameResults.txt");
+			System.out.println(url.getPath());
 			FileWriter writer = new FileWriter(url.getPath());
 			writer.close();
 		} catch (IOException e) {

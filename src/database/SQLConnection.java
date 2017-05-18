@@ -1,5 +1,6 @@
 package database;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -24,7 +25,9 @@ public class SQLConnection {
 		connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:src/database/ozlympic.db");
+			URL url = getClass().getResource("ozlympic.db");
+
+			connection = DriverManager.getConnection("jdbc:sqlite:"+url.getPath());
 			connection.setAutoCommit(true);
 			return connection;
 		} catch (ClassNotFoundException e) {
