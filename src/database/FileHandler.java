@@ -23,7 +23,8 @@ public class FileHandler {
 	 */
 	public FileHandler() {
 		try {
-			FileWriter writer = new FileWriter("src/database/gameResults.txt");
+			URL url = getClass().getResource("gameResults.txt");
+			FileWriter writer = new FileWriter(url.getPath());
 			writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -61,7 +62,8 @@ public class FileHandler {
 	 */
 	public void writeToGameResults(String msg) {
 		try {
-			FileWriter writer = new FileWriter("src/database/gameResults.txt", true);
+			URL url = getClass().getResource("gameResults.txt");
+			FileWriter writer = new FileWriter(url.getPath(), true);
 			writer.append(msg);
 			writer.close();
 		} catch (IOException e) {

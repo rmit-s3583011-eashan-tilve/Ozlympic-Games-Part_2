@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="sqlite-jdbc-3.7.2.jar"/>
-	<classpathentry kind="lib" path="mysql-connector-java-5.1.42-bin.jar"/>
+	<classpathentry kind="lib" path="/Users/eashantilve/Documents/workspace/Ozlympic-Games-Part_2/archives/sqlite-jdbc-3.7.2.jar"/>
+	<classpathentry kind="lib" path="/Users/eashantilve/Documents/workspace/Ozlympic-Games-Part_2/archives/mysql-connector-java-5.1.42-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,0 +1,48 @@
+Oz1000, swimmer, Naruto Uzumaki, 14, VIC
+Oz1001, swimmer, Sasuke Mazamaki, 14, ACT
+Oz1002, swimmer, Sakura Tuzamaki, 18, SA
+Oz1003, swimmer, Hinata Amchi, 21, NSW
+Oz1000, swimmer, Naruto Uzumaki, 14, VIC
+Oz1001, swimmer, Sasuke Mazamaki, 14, ACT
+Oz1002, swimmer, Sakura Tuzamaki, 18, SA
+Oz1003, swimmer, Hinata Amchi, 21, NSW
+Oz1004, swimmer, Roshi Kimchi, 24, TAS
+Oz1005, swimmer, Kiba Maka, 21, QLD
+Oz1006, swimmer, Shisui Naka, 20, VIC
+Oz1007, swimmer, Kakashi Saka, 19, WA
+
+Oz1008, sprinter, Usain Bolt, 14, VIC
+Oz1009, sprinter, Tyson Gay, 14, ACT
+Oz1010, sprinter, Asafa Powell, 18, NSW
+Oz1011, sprinter, Maurice Green, 21, VIC
+Oz1012, super, Deep Sharma, 22, VIC
+Oz1013, sprinter, Soumil Naik, 21, QLD
+Oz1014, sprinter, Eashan Tilve, 20, TAS
+Oz1015, sprinter, Chaitrali Inamdar, 19, WA
+
+Oz1016, cyclist, Sujit Sabnis, 14, VIC
+Oz1017, cyclist, Tommy Godwin, 14, ACT
+Oz1018, cyclist, Kurt Searvogel, 18, VIC
+Oz1019, cyclist, Amanda Coker, 21, SA
+Oz1020, cyclist, Craig Canon, 24, VIC
+Oz1021, cyclist, Christoph Strasser, 21, VIC
+Oz1022, cyclist, Jens Stotzner, 20, NSW
+Oz1023, cyclist, Steve Abraham, 19, QLD
+
+Oz1024, super, Rohit Deshpande, 14, VIC
+Oz1025, super, Carol Saldanha, 14, ACT
+Oz1026, super, King Chang, 18, QLD
+Oz1027, super, Niraj Bohra, 21, VIC
+Oz1028, super, Nick Battliwala, 24, NSW
+Oz1029, super, Shon Desai, 21, TAS
+Oz1030, super, Andrew Nicholson, 20, VIC
+Oz1031, super, david Hoffstadter, 19, WA
+
+Oz1032, officer, Sachin Tendulkar, 14, NSW
+Oz1033, officer, Virat Kohli, 14, ACT
+Oz1034, officer, Peter Saagan, 18, QLD
+Oz1035, officer, Roger Federer, 21, TAS
+Oz1036, officer, Bobby Root, 24, SA
+Oz1037, officer, Tanmay Durve, 21, VIC
+Oz1038, officer, Shaarang Bandhekar, 20, SA
+Oz1039, officer, Saurabh Ganguli, 19, VIC
